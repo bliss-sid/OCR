@@ -1,1 +1,1 @@
-"# OCR" 
+I implemented a Optical Character Recognition Engine using neural networks. I used OpenCV to process images and trained the system by updating weights and biases and developed an algorithm to segment images into various numeral characters . I implemented it for numbers only and got around 99% accuracy . I am still working on alphabet recognition.
