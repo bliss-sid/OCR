@@ -1,0 +1,148 @@
+ theta_npi2pi - converts an angle in radians to its equivalent angle
+                in the rnage [-PI/2 .. PI/2].
+ box_overlap_hori - determines if two boxes overlap horizontally.
+
+ is_box_inside - determines if one box is inside another.
+
+ concat_strings - concatenates two given strings together, returning one
+                  new string.
+ concat_strlist - concatenates all the strings in the specified list of
+                  strings together, returning one new string.
+ fatalerr - generic application error handler that prints a specified
+            message to stderr and exits with a status of 1.
+ free_names - deallocates an array of strings.
+
+ int_groups - determines the number of contiguous groupings of
+              characters belonging to a given set within another string.
+ is_in_int_set - determines if the specified integer is a member
+                 of the given set represetned as a string of integers.
+ inv_bytes - takes an array of bytes and inverts them using a
+             lookup table. invert = reverse bits within a byte
+ remove_from_list - removes an integer from the given list by shifting
+                    down all integers following the point of removal.
+ remove_item - removes corresponding items from three lists of integers
+               by shifting down all subsequent integers in the lists.
+ max_2d_addr - locates the maximum integer in a 2d matrix of specified
+               dimensions.
+ maxpv - returns the first position and value of maximum in a vector
+         of floats.
+ datadup - mallocs new space and copies supplied data into it, see also
+           ../image/imageops.c imagedup
+ malloc_char - allocates (malloc) a char of specified size n
+
+ malloc_uchar - allocates (malloc) an unsigned char of specified size n
+
+ malloc_shrt - allocates (malloc) a short of specified size n
+
+ malloc_int - allocates (malloc) an int of specified size n
+
+ malloc_flt - allocates (malloc) a float of specified size n
+
+ calloc_char - allocates (calloc) a char of specified size n
+
+ calloc_uchar - allocates (calloc) an unsigned char of specified size n
+
+ malloc_shrt - allocates (calloc) a short of specified size n
+
+ calloc_int - allocates (calloc) an int of specified size n
+
+ calloc_flt - allocates (calloc) a float of specified size n
+
+ malloc_dbl_char_l1 - allocates (malloc) a set of char pointers of
+                      specified number n
+ malloc_dbl_uchar_l1 - allocates (malloc) a set of unsigned char pointers
+                       of specified number n
+ malloc_dbl_shrt_l1 - allocates (malloc) a set of short pointers of
+                     specified number n
+ malloc_dbl_int_l1 - allocates (malloc) a set of int pointers of specified
+                     number n
+ malloc_dbl_flt_l1 - allocates (malloc) a set of float pointers of
+                     specified number n
+ realloc_char - reallocates a char to new size n
+
+ realloc_uchar - reallocates an unsigned char to new size n
+
+ realloc_shrt - reallocates a short to new size n
+
+ realloc_int - reallocates an int to new size n
+
+ realloc_flt - reallocates an float to new size n
+
+ realloc_dbl_char_l1 - reallocates a set of char pointers to a
+                        new number n
+ realloc_dbl_uchar_l1 - reallocates a set of unsigned char pointers
+                        to new number n
+ realloc_dbl_int_l1 - reallocates a set of int pointers to new number n
+
+ realloc_dbl_flt_l1 - reallocates a set of float pointers to new number n
+
+ minv - dap style function to return minimum value of a vector of
+        floats.
+ minp - returns the position of the first minimum value in a vector
+        of floats.
+ minl - returns a vector of characters equal to 1 in those locations
+        where the given vector of floats is minimum.
+ minpv - returns the first position and value of minimum in a vector
+         of floats.
+ minv_feats - returns the column vector of minimums extracted along
+              the rows of a 2-D column major array.
+ multisort_INDEX - recursive multiple-index QuickSort utility accessed
+                   through the Macro library in indexstruct.h .
+ compute_mxs_mys - computes the geometric centers of boxes given
+                   a list of box x, y, w, and h.
+ nearest_nbor - returns the location of the point from a list of points
+                that is closest to another specified point and returns
+                the closest distance.
+ find_closest_pts - locates the closest pair of points between two
+                    specified lists of points.
+ malloc_points - allocates a list of points.
+
+ add_point - appends a specified point to the end of the list.
+
+ fill_points_down - appends points to list filling a range of
+                    y-values downwards with same x-value.
+ fill_points_up - appends points to list filling a range of
+                    y-values upwards with same x-value.
+ nearestpoint - given a point determines which point in a specified
+                list is closest.
+ to_rel_polar2 - converts a list of cartesian points indirectly 
+                 referenced through an index list to polar coordinates
+                 relative to a specified center point.
+ is_in_range - determines if an integer is within the specified range.
+
+ f_is_in_range - determines if a float is within the specified range.
+
+ is_within_tolerance - verifies that two floats are within a specified
+                       distance from each other.
+ ramp_int_runs - takes a list of integers, thresholds them into
+                 binary values and assigns incrementally accumulated
+                 run length vales into a new list.
+ three_smooth - smooths the integers in an array using a three-point
+                Gausing function.
+ sort_index_dec_on_int - sorts an integer list into descending order.
+
+ sort_index_on_int - sorts an integer list into ascending order.
+
+ sort_index_on_int_2id - sorts two integer lists the first in ascending the
+                       second in descending order using the first list as a
+                       primary key and the second list as a secondary key.
+ sort_index_on_int_2ii - sort a double ranked list of integers in
+                       ascending order returning the sorted order of the
+                       ranked pairs.
+ strippath - takes a full pathname and returns a pointer to the
+             information to the right of the rightmost directory level.
+ substring - determines if the first string is a substring of the
+             the second provided string.
+ syserr - exits on error with a status of -1, printing to stderr a
+          caller-defined message and the system call error associated
+          with errno.
+ ticks - returns the number of clock cycles (ticks) used by a process.
+
+ ticksPerSec - returns the system definition for HZ, where 1/HZ seconds
+               is a tick (HZ = 60).
+ current_time - returns a string containing the current date on the
+                system.
+ too_big - determines if the two floats passed, when summed together,
+           exceed plus or minus a specified limit.
+ to_upper - takes the integer value of an ASCII character, and if the
+            character is lowercase, converts it to uppercase.

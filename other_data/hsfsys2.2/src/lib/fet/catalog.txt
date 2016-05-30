@@ -1,0 +1,12 @@
+ allocfet - allocates and initialized an empty fet structure.
+
+ reallocfet - reallocates an fet structure of a
+              specified length.
+ freefet - deallocates the memory for an fet structure.
+
+ readfetfile - opens an fet file and reads its contents into an
+               fet structure.
+ updatefet - replaces a feature entry in an fet structure, or creates
+             a new entry if the feature does not already exist.
+ writefetfile - write the contents of an fet structure to the
+                specified file.

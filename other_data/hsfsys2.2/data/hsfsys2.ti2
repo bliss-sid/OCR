@@ -1,0 +1,11 @@
+Run Initialize :            	  0.47	  1.7
+Form Load :                 	  1.35	  4.8
+Form Register :             	  7.30	 26.0
+Field Isolate :             	  6.10	 21.7
+Field Segment :             	  0.67	  2.4
+Character Normalize :       	  0.79	  2.8
+Character Feature Extract : 	  3.54	 12.6
+Character Classify :        	  4.45	 15.8
+Field Spell Correct :       	  3.40	 12.1
+Run Total Time :            	 28.13	100.0
+Run Total Forms :           	10

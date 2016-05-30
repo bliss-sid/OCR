@@ -1,0 +1,84 @@
+ distance - computes the distance between two points.
+
+ diff_sq_distance - computes the squared distance between two points.
+
+ perp_dist - given a point in space and the slope and a point on a line,
+             computes the perpendicular distance from the first point to
+             the line.
+ dx_line_alloc - interpolates a line between two endpoints by incrementing
+                 x by single units and computing a resulting y.
+ int_histogram - takes a list of integers and returns a list of
+                 histogram bins (old).
+ compute_slope - computes the slope of the line between two points.
+
+ compute_y - given the x coordinate, slope, and another point on the
+             line, computes the corresponding y coordinate.
+ compute_x - computes the x coordinate for a specified y coordinate,
+             given a non-zero slope and a point on the line.
+ pt_intersect - computes the point of intersection between two
+                specified lines.
+ intersect_sides - projects a line within a specified rectangle and
+                determines the enpoints of where the line intersects the
+                sides.
+ applyparam3_to_point - takes an x and y coordinate pair and applies
+                        the specified Least Squares parameters with
+                        three degrees of freedom.
+ chkfindparam3 - finds the best fit between two corresponding sets of
+                 points while checking for errors in the location of
+                 the hypothesized points.
+ findparam3 - finds the best fit between two corresponding sets of
+              points using Least Squares with 3 degrees of freedom.
+ determinant3 - computes the determinant for Least Squares with 3
+                degrees of freedom.
+ scale1param3 - computes the first scale parameter for Least Squares
+                with 3 degrees of freedom.
+ scale1param3 - computes the second scale parameter for Least Squares
+                with 3 degrees of freedom.
+ deltaparam3 - computes the translation parameter for Least Squares
+                with 3 degrees of freedom.
+ lsq_ind_line_params - given a list of indirectly addressed datapoints,
+                       computes the slope and y-intercept using Least
+                       Squares.
+ lsq_line_params - given a list of datapoints, computes the slope
+                   and y-intercept using Least Squares.
+ determinant2 - computes the determinant given accumulated x and x*x
+                and the number of datapoints.
+ scaleparam - computes the scale parameter for Least Squares with 2
+              degrees of freedom.
+ deltaparam - computes the translation parameter for Least Squares
+              with 2 degrees of freedom.
+ compute_mean - takes a list of integers and computes the mean.
+
+ within_mean_slope - heuristic used in constreader, tests both a
+                     distance within a factor of the given mean and
+                     a slope within a given tolerance.
+ int_list_median - returns the median value from a list of
+                   unsorted integers.
+ modefilteri - modal filter (frequency-based) for an integer signal
+
+ modesubfilteri - modal filter (frequency-based) for a specified
+                  segment of an integer signal
+ brent - performs a 1D parabolic minimization of an arbitrary function,
+         and returns the value at the minimum.
+ standard_deviation - calculates std dev from the accumulated x and
+                      x*x along with the number of datapoints.
+ variance - calculates the variance from the accumulated x and x*x
+            along with the number of datapoints.
+ zscore - calculates the zscore for a datapoint given the mean and
+          std dev.
+ compute_stddev - computes the standard deviation from a list of floating
+                  point numbers.
+ stddev_from_ints - computes the standard deviation from a list of
+                    integers.
+ sumints - computes the summation of the given integer list, sum(x).
+
+ sumprodints - computes the summation of two integer lists pointwise
+               multiplied, sum(x*y).
+ SSx - calculates SS(x) = (sum_x2 - ((sum_x * sum_x)/count))
+
+ SSxy - calculates   SS(xy) = (sum_xy - ((sum_x*sum_y)/count))
+
+ xkthi - return the kth largest element of an integer signal
+         with only partial sorting.
+ xkthf - return the kth largest element of an integer signal
+         with only partial sorting.

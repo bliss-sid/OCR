@@ -1,0 +1,22 @@
+ allocmis - allocates and initializes an mis structure with specified
+            attributes and length.
+ reallocmis - reallocates or allocates if necessary an mis structure
+              with specified attributes and length.
+ appendmis - takes an image raster and appends it to the end of a
+             homogeneous size and depth mis structure.
+ changemis - overwrites a specified entry in an mis structure with
+             the image passed.
+ deletemis - removes an mis entry at the specified position and shifts
+             all the following entries to fill the empty position.
+ freemis - deallocates the memory associated with the specified
+           mis structure.
+ freemishdr - deallocates the header associated with the specified
+              mis structure. Only used after a call to readmishdr.
+ buildmishdr - given a list of mis attributes, returns a new
+               allocated and initialized mis structure.
+ readmisfile - reads the contents of the specified file into a new
+               mis structure.
+ readmishdr - reads the IHead information from the specified file into a
+              new mis structure.
+ writemisfile - writes the contents of an mis structure to the
+                specified file in IHead format.

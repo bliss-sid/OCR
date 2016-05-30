@@ -1,0 +1,140 @@
+ accum_init - Initialization routine.
+ accum_zero - Zeros the accumulators.
+ accum_cpat - Accumulates for the current pattern.
+ accum_print - Prints some results.
+ accum_free - Frees used local buffers.
+ (accum_printer - Used by accum_print.)
+ (accum_sumout - Used by accum_print.)
+ (accum_yow - Used by accum_sumout.)
+ ac_sinusoid - MLP sinusoid activation function (returns derivative).
+ ac_v_sinusoid - MLP sinusoid activation function (activation only).
+ ac_sigmoid - MLP sigmoid (logistic) activation function (returns
+              derivative).
+ ac_v_sigmoid - MLP sigmoid (logistic) activation function (activation
+              only).
+ ac_linear - MLP linear activaiton function (returns derivative).
+ ac_v_linear - MLP linear activaiton function (activation only).
+ acsmaps_code_to_fn - Code char (e.g. SINUSOID) to function (in C
+                      sense) (e.g. ac_sinusoid).
+ acsmaps_code_to_str - Code char (e.g. SINUSOID) to string (e.g.
+                       "sinusoid").
+ acsmaps_str_to_code - String to code char.
+ boltz - for each weight in turn, makes a threshold based on the weight,
+         generates a uniform pseudorandom number, then prunes (zeros) the
+         weight if random number <= threshold.
+ (boltz_work - called by boltz.)
+ ch_bprms - checks a run-block of parms that have already been read
+            from a specfile.
+ csopiwh - checks for setting of parms in weights-file header.
+ cvr_init - Initialization of a weighted correct-vs-rejected table.
+ cvr_zero - Zeros out the accumulators.
+ cvr_cpat - Accumulates for current pattern.
+ cvr_print - Finishes the table computations and writes table.
+ cwrite - Non-fortrany version of the original C program
+ e_and_g - Computes the error value resulting from sending the
+           patterns through the MLP.  Also can compute the gradient
+           of the error w.r.t. the weights, and can do various other
+           computations and writings.
+ eb_cat - cats a (hidden) error buffer, which holds a sequence
+          of error messages
+ eb_get - gets a (hidden) error buffer, which holds a sequence
+          of error messages
+ eb_clr - clears a (hidden) error buffer, which holds a sequence
+          of error messages
+ eb_cat_e - Puts "ERROR " in front of provided string, formats the result,
+            catenates that onto the hidden error-messages buffer, and sets
+            the hidden error-exists flag.
+ eb_cat_w - Puts "Warning " in front of provided string, formats the
+            result, catenates that onto the hidden error-messages buffer,
+            and sets the hidden warning-exists flag.
+ ef_mse_t - computes "mse" error function, using a target vector.
+ ef_mse_c - computes "mse" error function, using a target class.
+ ef_t1_c - computes "type_1" error function, using a class.
+ ef_ps_c - computes "pos_sum" error function, using a class.
+ endopt - Does some output at the end of the optimization.
+ fsaso_init - Initialization call Before first call of fsaso.
+ fsaso - Fputs's a string both to stderr and to the short outfile.
+ getpat - Reads an MLP patterns file.
+ got_mmm - Tries to read just mpats, minps and mouts from a patterns
+           file.
+ get_phr - Gets the next unignorable phrase from a specfile, and the
+           number of the line in which it occurs.
+ got_blk - Scans enough of the specfile to get the next run-block (if
+           there is one), filling the parms struture with the scanned and
+           converted values and setting its setting-indicators.
+ got_c - Gets the next character of a file, also telling the number
+         of the line it was on.
+ got_nc_c - Gets the next non-comment character of a specfile, and
+            also tells its line-number.
+ is_w_set - sets the warning flag.
+ is_w_clr - clears the warning flag.
+ is_w_get - gets the values of the warning flag.
+ is_e_set - sets the error flag.
+ is_e_clr - clears the error flag.
+ is_e_get - gets the value of the error flag.
+ lbfgs - Limited Memory BFGS Method for Large Scale Optimization by
+         Jorge Nocedal
+ lb1 - Prints monitoring information w.r.t. lbfgs optimization.
+ mcsrch - Finds a step which satisfies a sufficient decrease condition
+          and a curvature condition.
+ mcstep - Computes a safeguarded step for a linesearch and to update an
+          interval of uncertainty for a minimizer of the function.
+ lbfgs_dr - Driver routine for lbfgs optimizer.
+ lgl_pnm - Finds out whether a word is one of the legal parameter-names.
+ lgl_tbl - Given a set of legal-parm-value-strings and coresponding
+        code-number-strings, makes a neat table of the strings and codes.
+ display_message - writes new value of a stationary message
+ exists          - finds out whether a file exists
+ fatal           - fatal(str) does fatalerr(str, NULL, NULL)
+ free_notnull    - frees pointer but only if it is not NULL
+ intcomp         - integer comparison function
+ lastcomp        - finds last component of a pathname
+ round           - rounds a float to an int
+ s2hms           - converts seconds to hours
+ tilde_filename  - changes ~/string to home-dir/string
+ ups_secs        - user plus system seconds used by process
+ lng2shrt - Reads a file that shows the short class-name corresponding
+            to each long class-name, and makes a buffer of the short names.
+ mtch_pnm - Finds out if a supposed parm name matches a specified
+            legal parm name.
+ neverset - a standard error message wrapper.
+ optchk_store_unchanging_vals - Copies its args to file-scope static
+              variables which optchk reads later.
+ optchk_store_e1_e2 - Stores main part of error and the mean squared
+              weight.
+ optchk - Checks progress of neural net optimization and perhaps prints.
+ rd_cwts - Reads a class-weights file.
+ rd_words - Reads a sequence of 4-byte words into a buffer, either from a
+            Fortran-style binary file or from a text file.
+ rprt_prs - Given a PARMS structure, this routine makes a report of the
+            values of the interesting parms, and it writes this report to
+            stderr and to the short outfile.
+ mlphypscons - classifies the given set of feature vectors using
+               the MLP code.
+ runmlp - runs the MLP classifier on a given feature vector.
+
+ scanspec - Makes a scan through the whole specfile.  Counts the "run
+            blocks" and reports the count.  For each run block, checks
+            the parm settings, and reports to stderr both illegal
+            situations and situations which are worthy of warnings.
+ scg - Uses a Scaled Conjugate Gradients (SCG) algorithm to train
+       (optimize) the MLP, optionally performing Boltzmann pruning during
+       training.
+ set_fpw - Sets the final pattern-weights.
+ st_nv_ok - Given a supposed parmname-parmvalue pair, and the number
+            of the specfile line from which it was read, this routine
+            does a bunch of calls of mtch_pnm to find out if the parmname
+            matches any of the legal parm names.
+ strm_fmt - Used to format the first, "stream" part of a warning or
+            error message.
+ tsp_w - standard wrapper to generate a warning message.
+ uni - this routine generates quasi uniform random numbers on [0,1)
+       and can be used on any computer with at least 16 bit integers.
+ randwts - Gets random MLP network weights.
+ randwts_oldorder - Gets random MLP network weights in an old format order.
+ readwts - Reads MLP weights file.  Returns the "network architecture"
+           info stored in the weights file, as well as the weights.
+ readwts_np - Reads MLP weights file.  Returns the "network architecture"
+           info stored in the weights file, as well as the weights, but
+           NOT using structures in parms.h.
+ putwts - Writes the MLP network weights as an ascii file.

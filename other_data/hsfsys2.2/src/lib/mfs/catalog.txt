@@ -1,0 +1,19 @@
+ allocmfs - allocates and initializes an mfs structure of a
+            specified length.
+ reallocmfs - reallocates an mfs structure of a
+            specified length.
+ appendmfs - appends a specified string value to the end of an
+             mfs structure.
+ freemfs - deallocates an mfs structure and its values.
+
+ mfs2int2 - converts the mfs structure values containing two integers
+            into two separate arrays of integers.
+ readmfsfile - reads the contents of the specified file into a
+               new mfs structure.
+ readmfsint2 -  reads MFS file containing 2 integers strings per value
+                from the specified file and returns them in 2 separate
+                lists of integers.
+ readintmfs - reads MFS values containing integers strings from the
+              specified file and converts them into a list of integers.
+ writemfsfile - takes an mfs structure and writes its contents to the
+                specified file.

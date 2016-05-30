@@ -1,0 +1,132 @@
+ append_pi_list - appends the contents of the second list of phrase
+                  indices to the members of the first phrase index list.
+ append_pi_list_Rel2 - appends the contents of the second list of phrase
+                   indices to the members of the first phrase index
+                   list using dynamic allocation.
+ build_pi_lists - builds lists of phrase indices referencing segmented
+                  characters sorted into reading order based on
+                  segmentor statistics.
+ build_pi_lists_Rel2 - builds lists of phrase indices referencing segmented
+                  characters sorted into reading order based on
+                  segmentor statistics using dynamic allocation.
+ find_bubble_max_y - computes the maximum height of the bubble
+                     given the line parameters for b = L(a).
+ nearest_nbor_in_right_bubble - incrementally grows a bubble to the
+                                right, retuning the nearest blob once
+                                blobs are detected within the bubble.
+ get_points_within_right_box - initially constrains the search space
+                               to the rectangular region bounding the
+                               largest possible bubble.
+ get_list_in_right_bubble - searches the area within the current bubble
+                            for the presence of blobs.
+ is_in_right_bubble - determines if the specified point is within the
+                      current bubble.
+ nearest_nbor_in_left_bubble - incrementally grows a bubble to the
+                               left, retuning the nearest blob once
+                               blobs are detected within the bubble.
+ get_points_within_left_box - initially constrains the search space
+                              to the rectangular region bounding the
+                              largest possible bubble.
+ get_list_in_left_bubble - searches the area within the current bubble
+                           for the presence of blobs.
+ is_in_left_bubble - determines if the specified point is within the
+                     current bubble.
+ get_closest_pi_list_to_right - determines which list of phrase indices
+                        is closest to the right of another specified
+                        list of phrase indices.
+ get_closest_pi_list_to_left - determines which list of phrase indices
+                        is closest to the left of another specified
+                        list of phrase indices.
+ current_pi_list - determines if the next blob should be added to the
+                   current phrase index list or be added to a new
+                   phrase index list.
+ current_pi_list_Rel2 - determines if the next blob should be added to the
+                   current phrase index list or be added to a new
+                   phrase index list using dynamic allocation.
+ find_pi_lists - given a list of segmented character centers, sorts the
+                 blob indices into phrases according to proper reading
+                 order.
+ find_pi_lists_Rel2 - given a list of segmented character centers, sorts
+                 the blob indices into phrases according to proper reading
+                 order using dynamic allocation.
+ look_left - initializes the position of a new phrase by using the
+             bubbles to look left of the specified position, attempting
+             to begin the new phrase at the beginning of a line.
+ pi_list_to_right - merge heuristic which determines if one list of
+                    phrase indices is to the right of another list.
+ pi_list_along_line - merge heuristic which determines if a list of
+                      phrase indices lies sufficiently close to a line
+                      projection defined by the given parameters.
+ merge_pi_lists - collapses lists of phrase indices into complete lines
+                  of text by applying two merge heuristics controlled
+                  by the provided parameters.
+ merge_pi_pair - appends the contents of two lists of phrase indices,
+                 removes the merged list from the input lists, and
+                 sorts the appended list's members on blob center x's.
+ merge_pi_lists_Rel2 - collapses lists of phrase indices into complete
+                  lines of text by applying two merge heuristics controlled
+                  by the provided parameters using dymanic allocation.
+ merge_pi_pair_Rel2 - appends the contents of two lists of phrase indices,
+      removes the merged list from the input lists, and sorts the appended
+      list's members on blob center x's using dynamic allocation.
+ new_pi_list - allocates and initializes a new list of phrase indices,
+               storing the top-leftmost blob's index into it.
+ new_pi_list_Rel2 - allocates and initializes a new list of phrase indices,
+               storing the top-leftmost blob's index into it using dynamic
+               allocation.
+ build_phrase_map - generate an image map of the central mass of each line of
+                    of handprint.
+ phrases_from_map - sort blobs into phrase lines using the map.
+
+ norm_small_tall_lists - sort blobs into categories of normal, small, and tall.
+
+ pi_lines_from_map - generate lists of blob indices sorting the blobs
+ should_split_tall - test to determine if a tall character should be split
+                     across multiple lines of handprint.
+ tst_phrase_overlap - tests the amount of character overlap with a line in the
+                      phrase map.
+ split_across_lines - horizontally splits a character across multiple lines.
+
+ find_closest_line_in_map - finds the closest line in the phrase map to a
+                      specified blob.
+ hist_blob_colors - generates a histogram from the black pixels in a blob
+                    that overlap 0 or more lines in the phrase map.
+ draw_phrase_map - actually construct the phrase map image.
+
+ short_phrases_to_problems - removes and appends too short phrases to the
+                   problem list.
+ phrases2hypstr2 - appends the classes referenced in lists of phrase
+                   indices into one long character string.
+ phrases2constr2 - appends the confidences referenced in lists of phrase
+                   indices into one long character string.
+ add_pi_list - adds blob index to specified list dynamically reallocating the
+               index list if necessary.
+ pi_list_to_blobls - converts the indirection in a list of blob indices
+                     into a list of blobs.
+ process_nearest_pi - adds the next blob to the current phrase index
+                      list and adjusts the bubble location statistics.
+ process_nearest_pi_Rel2 - adds the next blob to the current phrase index
+                      list and adjusts the bubble location statistics
+                      using dynamic allocation.
+ remove_from_pi_lists - removes the specified list of phrase indices
+                        from the given lists of indices.
+ sort_pi_lists_on_y - sorts lists of phrase indices based on the
+                      y coordinate of their first blob's center in
+                      ascending order.
+ sort_pi_list_on_x - sorts the elements of a list of phrase indices
+                     based on the x coordinate of each blob's center in
+                     ascending order.
+ sort_pi_lists_by_length - sorts lists of phrase indices based on the
+                           number of elements (blobs) in each list in
+                           decending order.
+ spell_phrases2 - takes a lists of phrase indices whose elements are
+                  sorted into reading order and corrects errors and
+                  identifies word boundaries using the specified
+                  dictionaries.
+ spell_phrases_Rel2 - takes a lists of phrase indices whose elements are
+                  sorted into reading order and corrects errors and
+                  identifies word boundaries using the specified
+                  dictionaries (passed word list rather than dictionary
+                  file).
+ find_top_left - determines the top-leftmost blob of all the blobs not
+                 yet assigned any phrase structure.

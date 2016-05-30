@@ -1,0 +1,17 @@
+ hsfsys1 - updated version of 1st release of program that conducts OCR
+           on a binary image of an HSF form.
+ hsfsys2 - 2nd release of program that conducts OCR on a binary image
+           of an HSF form.
+ mis2evt - produces the eigenvectors from the covariance matrix of 32x32
+           or 128X128 binary characters stored in an MIS file.
+ mis2pat1 - computes KL feature vectors from 32x32 or 128x128 binary
+            images stored in an MIS file and writes out a patterns-tree
+            file and a median vector file. These files are used by the
+            program "hsfsys1".
+ mis2pat2 - computes KL feature vectors from 32x32 or 128x128 binary
+           images stored in an MIS file and writes out a patterns file.
+           This file is used by the programs "hsfsys2" and "mlp".
+ mlp - Main routine for running the Multi-Layer Perceptron training
+       and testing program.
+ trainreg - program for training generalized form registration on new
+            form type. The output of this program is used in "hsfsys2".

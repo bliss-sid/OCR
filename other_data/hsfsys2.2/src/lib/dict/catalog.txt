@@ -1,0 +1,50 @@
+ getalignchar - converts an alignment character to an output ASCII
+                character for diagnostic printing.
+ process_alpha_text - takes an integer list of character classes and
+                      recursively processes them into words provided in
+                      a phrase dictionary by generating fan-outs of
+                      hypothesized words.
+ process_fanout - takes a fan-out of hypothesized words and recursively
+                  processes it into words provided in a phrase dic-
+                  tionary using classes stored in an integer list.
+ build_fanout - fills in a fan-out structure with hypothesized words
+                from the provided integer list of classes and matches
+                them to the phrase dictionary.
+ spell_fanout_word- mathes a hypothesized word in a fanout structure
+                    to the provided phrase dictionary storing the
+                    resulting match and fanout signal.
+ fanout_signal - given a hypothesized word match, its alignment, and
+                 the parameters for a linear translation function,
+                 computes a fanout signal.
+ ldv - computes the Levenstein Distance between two strings and returns
+       their corresponding alignment.
+ lookup_levenstein - given a word string, mfs structure of words or
+                     phrases, determines which mfs entry is the best
+                     match to the word using the Lenenstein Distance.
+ init_align_params - initializes the global parameter structure
+                     controlling the Levenstein Distance algorithm.
+ end_lookup_levenstein - deallocates the global parameter structure.
+
+ spell_line2 - takes an integer list of character classes and corrects
+               segmentor and classifier errors and identifies word
+               boundaries using the given phrase dictionary.
+ first_0 - locates the position (left-to-right) of the first
+           occurance of a 0 in the alignment string.
+ last_0 - locates the position (right-to-left) of the first
+          occurance of a 0 in the alignment string.
+ syncline - synchronizes processing of the list of character
+            classifications upon incurring a dictionary match.
+ load_phrase_dictionary - loads the contents of the given filename into
+                          a phrase dictionary (mfs structure).
+ reverse_ivec - reverses a vector of integers in place.
+
+ store_phrase_dictionary - writes the contents of the given phrase
+                           dictionary (mfs structure) to the specified
+                           filename.
+ choosemaxpseudoword - determines the best match given a list of
+                       hypthesized words in a fan-out.
+ dumppseudowords2 - generates another formated report of a fan-out to
+                    the specified file pointer.
+ growword2 - takes a character string and appends a new character
+             stored in a list of integers classes to the end of the
+             string provided there is sufficient memory.

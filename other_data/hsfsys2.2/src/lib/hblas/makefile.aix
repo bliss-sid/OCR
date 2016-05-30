@@ -1,0 +1,120 @@
+# **********************************************************
+# Project:		NIST HSF Recognition System
+# SubTree:		./hsf/src/lib/hblas
+# Filename:		makefile.mak
+# Integrator:		Michael D. Garris
+# Organization:		NIST/ITL
+# Host System:		IBM AIX 3.2.5 (UNIX)
+# Date Created:		9/24/96
+#
+# **********************************************************
+# Makefile for SRC Library Directory
+# **********************************************************
+SHELL=/bin/sh
+# PROJDIR and INSTARCH Passed On Command Line ONLY
+PROJECT_ROOT	= $(PROJDIR)
+ARCHTYPE	= $(INSTARCH)
+LIBDIR		= $(PROJECT_ROOT)/lib
+SRCDIR		= $(PROJECT_ROOT)/src/lib/hblas
+
+# **************************************************
+# INDIVIDUAL PROGRAM MODIFICATIONS SHOULD BEGIN HERE
+# **************************************************
+
+# Library to make (library name)
+LIBRARY	= libhblas.a
+# Source files for LIBRARY
+SRC	= isamax.c \
+	lsame.c \
+	sasum.c \
+	saxpy.c \
+	scopy.c \
+	sdot.c \
+	sgemm.c \
+	sgemv.c \
+	sger.c \
+	snrm2.c \
+	sscal.c \
+	sswap.c \
+	ssymv.c \
+	strmm.c \
+	strmv.c \
+	ssyr2.c \
+	ssyr2k.c \
+	xerbla.c
+
+# Local additions for CFLAG options (eg: -g)
+LOCAL_CFLAGS	= -w -O
+
+# *******************************************************
+# THE REST OF THE MAKEFILE SHOULD NOT NEED TO BE MODIFIED
+#       (EXCEPT UPON APPROVAL OF PROJECT MANAGER)
+# *******************************************************
+
+INCLUDE = $(PROJECT_ROOT)/include
+OBJ     = $(SRC:.c=.o)
+US     = $(SRC:.c=.u)
+LIBRY   = $(LIBRARY)
+
+CFLAGS	= -I$(INCLUDE) -L$(LIBDIR) $(LOCAL_CFLAGS)
+CC	= cc $(CFLAGS)
+
+ARFLAGS = ru
+AR	= ar $(ARFLAGS)
+
+MAKEFILE	= makefile.mak
+.PRECIOUS: $(MAKEFILE)
+
+.c.o:
+	$(CC) -c $<
+
+it: $(LIBRY)
+
+install: $(MAKEFILE) $(LIBDIR)/$(LIBRARY)
+$(LIBDIR)/$(LIBRARY): $(LIBRY)
+	cp $(LIBRY) $(LIBDIR)
+	chmod 664 $(LIBDIR)/$(LIBRARY)
+	catalog.sh proc $(SRCDIR) c > /dev/null
+
+$(LIBRY): $(OBJ)
+	$(AR) $(LIBRY) $?
+
+%.o: %.c
+	$(CC) -c -o $@ $<
+
+clean :
+	rm -f $(OBJ) $(US) *.BAK *~ #*#
+
+bare: clean
+	rm -f $(LIBRY)
+
+$(MAKEFILE): $(SRC)
+	$(CC) -c -M $(SRC)
+	@sed -e '1,/^# DO NOT DELETE/!d' $(MAKEFILE) > $(MAKEFILE).tmp.$$$$; \
+	cat $(US) >> $(MAKEFILE).tmp.$$$$; \
+	cp $(MAKEFILE) $(MAKEFILE).BAK; \
+	mv $(MAKEFILE).tmp.$$$$ $(MAKEFILE); \
+	rm -f $(US) $(OBJ)
+	
+depend: $(SRC)
+	$(CC) -c -M $(SRC)
+	@sed -e '1,/^# DO NOT DELETE/!d' $(MAKEFILE) > $(MAKEFILE).tmp.$$$$; \
+	cat $(US) >> $(MAKEFILE).tmp.$$$$; \
+	cp $(MAKEFILE) $(MAKEFILE).BAK; \
+	mv $(MAKEFILE).tmp.$$$$ $(MAKEFILE); \
+	rm -f $(US) $(OBJ); \
+	echo make depend complete
+
+instarch : bare
+	@case "$(ARCHTYPE)" in \
+	sol|sgi|aix|lnx|cyg) rm -f makefile.mak; \
+	     cp makefile.$(ARCHTYPE) makefile.mak; \
+	     chmod 640 makefile.mak; \
+	     echo $(ARCHTYPE) files installed \
+	;; \
+	*) echo 'Tried to install uknown machine architecture: '$(ARCHTYPE); \
+	   exit 1 \
+	;; \
+	esac
+
+# DO NOT DELETE THIS LINE - make depend uses it

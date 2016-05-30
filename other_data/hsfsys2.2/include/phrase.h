@@ -1,0 +1,2 @@
+#define PHRASE_NUM_CHUNKS  10
+#define PHRASE_LEN_CHUNKS  80

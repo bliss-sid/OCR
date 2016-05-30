@@ -1,0 +1,99 @@
+This files lists the references cited in the release's documentation.
+Electronic copies of these references are available on-line at:
+
+   www.itl.nist.gov/iaui/894.03/pubs.html#doc
+
+
+[bib_00] M. D. Garris, "Design and Collection of a Handwriting
+         Sample Image Database," Social Science Computer Review,
+         Vol. 10, pp. 196-214, Duke University Press, 1992.
+[bib_01] M. D. Garris, C. L. Wilson, J. L. Blue, G. T. Candela,
+         P. Grother, S. Janet, and R. A. Wilkinson, "Massively
+         Parallel Implementation of Character Recognition Systems,"
+         NIST Internal Report 4750, January 1992, and in Conference
+         on Character Recognition and Digitizer Technologies, Vol.
+         1661, pp. 269-280, SPIE, San Jose, February 1992.
+[bib_02] O. M. Omidvar and C. L. Wilson, "Information Content in
+         Neural Net Optimization," NIST Internal Report 4766,
+         February 1992, and in Journal of Connection Science,
+         6:91-103, 1993.
+[bib_03] J. L. Blue and P. J. Grother, "Training Feed Forward
+         Networks Using Conjugate Gradients," NIST Internal Report
+         4776, February 1992, and in Conference on Character
+         Recognition and Digitizer Technologies, Vol. 1661,
+         pp. 179-190, SPIE, San Jose, February 1992.
+[bib_04] P. J. Grother, "Karhunen Loeve Feature Extraction for
+         Neural Handwritten Character Recognition," NIST Internal
+         Report 4824, April 1992, and in Proceedings of Applications
+         of Artificial Neural Networks III, Vol. 1709, pp. 155-166.
+         SPIE, Orlando, April 1992.
+[bib_05] M. D. Garris and S. A. Janet, "NIST Scoring Package
+         User's Guide, Release 1.0," NIST Internal Report 4950,
+         October 1992.
+[bib_06] P. J. Grother, "Cross Validation Comparison of NIST OCR
+         Databases," NIST Internal Report 5123, January 1993, and
+         in Proceedings of Character Recognition Technologies,
+         Vol. 1906, pp. 296-307, SPIE, San Jose, February 1993.
+[bib_07] M. D. Garris, "Methods for Evaluating the Performance of
+         Systems Intended to Recognize Characters from Image Data
+         Scanned from Forms," NIST Internal Report 5129,
+         February 1993.
+[bib_08] P. J. Grother and G. T. Candela, "Comparison of
+         Handprinted Digit Classifiers," NIST Internal Report 5209,
+         June 1993.
+[bib_09] M. D. Garris, "NIST Scoring Package Cross-Reference for
+         use with NIST Internal Reports 4950 and 5129," NIST
+         Internal Report 5249, August 1993.
+[bib_10] C. L. Wilson, "Evaluation of Character Recognition
+         Systems," in Neural Networks for Signal Processing III,
+         pp. 485-496, IEEE, New York, September 1993.
+[bib_11] M. D. Garris, "Unconstrained Handprint Recognition Using
+         a Limited Lexicon," NIST Internal Report 5310, December
+         1993, and in Proceedings of Document Recognition,
+         Vol. 2181, pp. 36-46, SPIE, San Jose, February 1994.
+[bib_12] J. L. Blue, G. T. Candela, P. J. Grother, R. Chellappa,
+         and C. L. Wilson, "Evaluation of Pattern Classifiers for
+         Fingerprint and OCR Applications," Pattern Recognition,
+         Vol. 27, No. 4, pp. 485-501, 1994.
+[bib_13] M. D. Garris and D. L. Dimmick, "Evaluating Form Designs
+         for Optical Character Recognition," NIST Internal Report
+         5364, February 1994.
+[bib_14] J. Geist, R. A. Wilkinson, S. Janet, P. J. Grother,
+         B. Hammond, N. W. Larsen, R. M. Klear, M. J. Matsko,
+         C. J. C. Burges, R. Creecy, J. J. Hull, T. P. Vogl,
+         C. L. Wilson, "The Second Census Optical Character
+         Recognition Systems Conference," NIST Internal Report
+         5452, May 1994.
+[bib_15] M. D. Garris, J. L. Blue, G. T. Candela, D. L. Dimmick,
+         J. Geist, P. J. Grother, S. A. Janet, and C. L. Wilson,
+         "NIST Form-Based Handprint Recognition System," NIST
+         Internal Report 5469 and CD-ROM, July 1994.
+[bib_16] C. L. Wilson, P. J. Grother, and C. S. Barnes, "Binary
+         Decision Clustering for Neural Network Based Optical
+         Character Recognition," NIST Internal Report 5542,
+         December 1994.
+[bib_17] P. J. Grother, "Handprinted Forms and Characters
+         Database, NIST Special Database 19," NIST Technical
+         Report and CD-ROM, March 1995.
+[bib_18] M. D. Garris, "Method and Evaluation of Character
+         Stroke Preservation of Handprint Recognition," NIST
+         Internal Report 5687, July 1995, and in Proceeding of
+         Document Recognition III, Vol. 2660, pp. 321-332, SPIE,
+         San Jose, February 1996.
+[bib_19] C. L. Wilson, J. L. Blue, O. M. Omidvar, "The Effect of
+         Training Dynamics on Neural Network Performance," NIST
+         Internal Report 5696, August 1995.
+[bib_20] M. D. Garris and P. J. Grother, "Generalized Form
+         Registration Using Structure-Based Techniques," NIST
+         Internal Report 5726 and in Proceedings of the Fifth
+         Annual Symposium on Document Analysis and Information
+         Retrieval, pp. 321-334, UNLV, April 1996.
+[bib_21] M. D. Garris, "Component-Based Handprint Segmentation
+         Using Adaptive Writing Style Model," NIST Internal
+         Report 5843, June 1996.
+[bib_22] M. D. Garris, "Teaching Computers to Read Handprinted
+         Paragraphs," NIST Internal Report 5894, September 1996.
+[bib_23] C. L. Wilson, J. Geist, M. D. Garris, and R. Chellappa,
+         "Design, Integration, and Evaluation of Form-Based
+         Handprint and OCR Systems," NIST Internal Report 5932,
+         December 1996.

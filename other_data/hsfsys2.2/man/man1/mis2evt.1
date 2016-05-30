@@ -1,0 +1,77 @@
+.\" @(#)mis2evt.1 96/12/12 NIST
+.\" I Visual Image Processing Group
+.\" Michael D. Garris
+.\"
+.TH MIS2EVT 1 "12 December 1996"
+.SH NAME
+mis2evt \- computing eigenvectors and creating basis function files
+.SH SYNOPSIS
+.nf
+.B "mis2evt [\-n][\-v] \fI<nrequiredevts> <evtfile> <mfs_of_misfiles>\fP"
+.fi
+.SH DESCRIPTION
+This command compiles a covariance matrix and then computes its eigenvectors
+from a set of segmented character images. The eigenvectors are computed once
+off-line and stored in a basis function file. The recognition systems read
+the basis function file during their initialization, and then reuse the
+eigenvectors across all the character images segmented from fields of a
+specified type.
+.LP
+.SH ARGUMENTS
+.TP
+.I nrequiredevts
+Specifies the number of eigenvectors to be written to the output file.
+It is also the number of KL features that will be extracted from each binary
+image using the associated utilities \fImis2pat\fP and \fImis2pat2\fP. This
+integer determines the dimensionality of the feature vectors that are
+produced for classification. Its upper bound is the  image dimensionality
+(which is 32X32=1024). Typically, this argument is specified to be much
+smaller than 1024 because the KL transform optimally compacts the
+representation of the image data into its first few coefficients (features).
+.TP
+.I evtfile
+Specifies the name of the output basis function file. The format of this
+file is documented by the routine \fIwrite_basis()\fP found in
+\fIsrc/lib/nn/basis_io.c\fP.
+.TP
+.I mfs_of_misfiles
+Specifies a text file that lists the names of all the MIS files containing
+images that will be used to calculate the covariance matrix. This argument
+is an MFS file the format of which is documented by the routine
+\fIwritemfsfile()\fP found in \fIsrc/lib/mfs/writemfs.c\fP.
+.LP
+.SH OPTIONS
+.TP
+.B n
+Specifies the storing of intermediate normalized character images.
+\fIMis2evt\fP can process binary images that are either (128X128) or (32X32).
+In the case of the former, the program invokes a size normalization utility to
+produce 32X32 images and then applies a shear transformation to reduce slant
+variations. If the input images are already 32X32, this flag has no effect.
+If normalization does occur, the resulting normalized images are stored to
+MIS files having the same name as those listed in the MFS file, with the
+additional extension \fI32\fP appended. These intermediate files offer
+computational gains because usually the same images are used with
+\fImis2pat\fP and \fImis2pat2\fP.
+.TP
+.B v
+Produces messages to standard output signifying the completion of each MIS
+file and other computation steps.
+.LP
+.SH COMMENTS
+.LP
+This program is computationally expensive and may require as long as 60 minutes
+to compute the eigenvectors for a large set (50,000 characters) of images.
+The program \fImis2evt\fP was used to generate the basis function files provided
+with this distribution in the top-level directory \fIweights\fP and ending with
+the extension \fIevt\fP. These files contain eigenvectors computed from the
+images provided in the top-level directory \fItrain\fP. The MFS files used as
+arguments to \fImis2evt\fP are also provided in \fIweights\fP and end with the
+extension \fIml\fP. 
+.LP
+.SH EXAMPLE
+.LP
+The basis function file \fIweights/pnn/lower/h46_l.evt\fP was generated
+with the following command:
+.TP
+.B "% mis2evt -v 64 h46_l.evt h46_l.ml"

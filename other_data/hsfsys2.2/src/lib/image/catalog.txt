@@ -1,0 +1,383 @@
+ binary_subimage_copy_8 - copies a binary subimage that is a multiple
+                          of 8 bits wide.
+ binary_subimage_copy_gt - special condition when copying a
+                           binary subimage.
+ binary_subimage_copy_lt - special condition when copying a
+                           binary subimage.
+ binary_subimage_copy_eq - special condition when copying a
+                           binary subimage.
+ binary_subimage_copy - copies a binary subimage to another image
+                        at a specified location.
+ binary_fill_partial - uses a logical operator to copy pixels from a
+                       location in one binary scanline to a location in
+                       another binary scanline.
+ gb - gets a pixel from a binary scanline.
+
+ sb - sets a pixel in a binary scanline.
+
+ nandbinimage - logically NANDs two binary bitmaps together, returning
+                the results in a new image.
+ binary_subimage_or_8 - uses a logical OR operator to copy a binary
+                        subimage that is a multiple of 8 bits wide.
+ binary_subimage_or_gt - special condition when using a logical OR
+                         operator to copy a binary subimage.
+ binary_subimage_or_lt - special condition when using a logical OR
+                         operator to copy a binary subimage.
+ binary_subimage_or_eq - special condition when using a logical OR
+                         operator to copy a binary subimage.
+ binary_subimage_or - uses a logical OR operator to copy a binary
+                      subimage to another image at a specified
+                      location.
+ bits2bytes - promotes a binary image to a grayscale image.
+        destination pointer must be double-aligned.
+        not generalized by byte-order.
+
+ build_blobls - allocates and initializes a list of blobs.
+
+ alloc_blobls - allocates a list of blobs.
+
+ free_blobls - deallocates a list of blobs including image data if not NULL.
+
+ realloc_blobls - reallocates a list of blobs that has overflowed.
+
+ append_blobls - adds a blob to the end of a blob list.
+
+ merge_with_blobls - merges two blobs contained in a blob list and frees
+                 up the location of the source blob.
+ merge_among_blobls - merges two blobs, each in a separate blob list, and frees
+                 up the location of the source blob.
+ merge_blobs - composites two blobs back together according to their cut
+               corrdinates from their parent image.
+ remove_blobls - removes a blob from its blob list at a specified location by
+                 sliding (collapsing) the contents of the list down in memory.
+ init_blobls - sets up global blob list attributes.
+
+ build_blob - allocates and initializes a blob given image data and attributes.
+
+ dup_blob - returns a duplicate copy of the blob passed.
+
+ update_blobls_stats - recomputes blob attributes specified by the flag passed
+                       across all the blobs in the list.
+ compute_blob_stats - computes blob attributes specified by the flag passed.
+
+ alloc_blob - allocates a blob structure without any allocation for image data.
+
+ free_blob - deallocates a blob structure and its image data if not NULL.
+
+ char2bin_blobls - converts all the blobs in a list containing binary char image
+                   data to one bit per pixel data.
+ find_first_max_blob_memb - used in coordination with the blob_offsetof() macro,
+           this routine will find the maximum value for a specific blob attribute.
+ compute_avr_blob_memb - used in coordination with the blob_offsetof() macro,
+           this routine computes the average value for a specific blob attribute.
+ prct_blobls_memb - selects the specified percentile from the list of blob
+             attributes.
+ median_blob_memb - finds median from the list of blob attributes.
+
+ sort_blobls_on_memb - used in coordination with the blob_offsetof() macro,
+             this routine sorts a list of blobs on a specific blob attribute.
+ is_blob_above - determines if one blob is above another.
+
+ find_blob_nbrs - given a list of blobs sorted left-to-right, returns blobs to the
+                  left and right of a given blob.
+ find_blob_ind_blob_nbrs - given a list of blobs and a sorted rank of the list,
+                  returns blobs to the left and right of a given blob.
+ find_first_blob_inside - determines if a blob is inside one of the blobs
+                          contained in a list.
+ blob_hori_overlaps - given a blob and a list of blobs, finds all those blobs
+                 that horizontally overlap the first blob and measures and stores
+                 the distance of the overlaps.
+ bres_line_alloc - same as bres_line except if nalloc == 0 allocates new
+                   memory, or reallocs if nalloc is too small.
+ bytes2bits - converts a grayscale image into a binary image.
+
+ char2bin_exact - converts an binary character image to a binary
+                  bitmap byte-aligning the resulting image width.
+ chr_x_hist - computes a horizontal spatial histogram from a
+              1 pixel per byte binary image.
+ chr_y_hist - computes a vertical spatial histogram from a
+              1 pixel per byte binary image.
+ pixelcnt8 - counts the number of black pixels in a binary character
+            stream, one byte per pixel, faster than pixelcnt.
+ subpixelcnt8 - counts the number of black pixels in the specified subimage of
+                a binary character stream, one byte per pixel.
+ pixelcnt - counts the number of black pixels in a binary character
+            image, one byte per pixel, same result as pixelcnt8.
+ shift_row - takes a row of character pixels and shifts them left or
+             right by a given number of pixel into an output row.
+ left_pix - locates the first nonzero pixel left-to-right in a given
+            row of character pixels and returns -1 if no pixel is found.
+ char_top - locates the first row of pixels top-to-bottom in a character
+            image that contains a nonzero pixel and returns -1 if no
+            row is found.
+ char_bottom - locates the first row of pixels bottom-to-top in a
+               character image that contains a nonzero pixel and
+               returns -1 if no row is found.
+ find_corners - determines the box bounding the black pixels within
+                a binary bitmap based on histograms and thresholds.
+ find_corners1 - finds the top left and width height of the bounding
+                 box of all pixels of a 1 bit per pixel 0/1 binary image
+ find_corners8 - finds the top left and width height of the bounding
+                 box of all pixels of a 1 byte per pixel 0/1 char image 
+ calc_skew - takes a 1 pixel per byte image and returns an angle
+             of skew in degrees.
+ sumlineexps - calculates a sum exponentials of slanted row sums. 
+                  used to determine angle of skew in the image.
+ calc_trans - computes the disparity in x and y between "dominant"
+              structures in two images.
+ find_trans_reg_points - locates dominant structures in an image.
+
+ chk_trans_reg_points - computes and checks the dispairty in x and y.
+
+ drawline8 - draws a line between two points in an 8-bit
+             grayscale image.
+ drawline8_xor - draws a line using logical XOR onto an 8-bit per pixel
+                 binary image by interpolating between given endpoints.
+                 really flips the image pixels equal to XOR with 1.
+ valid_point - determines if a point lies with the specified
+               dimensions.
+ drawvertline8 - draws a vertically straight line in a binary char image.
+
+ tstndrawvertline8 - draws a vertically straight line in a binary char
+              image and prempts itself is destination pixel already set
+              to non-zero.
+ dribble_down_up - given an image and a starting x position, follows the gradients
+                   of character stroke edges from the top of the image down and 
+                   from the bottom of the image up, stopping at minima points.
+ dribble_down - starts at the top of the image at a specified x position and follows
+                edges downwards, stopping at a local minima.
+ dribble_up - starts at the bottom of the image at a specified x position and follows
+                edges upwards, stopping at a local minima.
+ sum_dys_left_down - given a starting point in an image, increments to the left a
+                specified window width measuring the distance down to the first
+                black pixel.
+ sum_dys_right_down - given a starting point in an image, increments to the right a
+                specified window width measuring the distance down to the first
+                black pixel.
+ sum_dys_left_up - given a starting point in an image, increments to the left a
+                specified window width measuring the distance up to the first
+                black pixel.
+ sum_dys_right_up - given a starting point in an image, increments to the right a
+                specified window width measuring the distance up to the first
+                black pixel.
+ send_feelers_look_down - from a specified point looks left and right to follow
+                the edge of a character stroke downwards.
+ send_feelers_look_up - from a specified point looks left and right to follow
+                the edge of a character stroke upwards.
+ look_left_down - looks for next step to the left down the edge of a
+                  character stroke.
+ look_right_down - looks for next step to the right down the edge of a
+                   character stroke.
+ look_left_up - looks for next step to the left up the edge of a
+                  character stroke.
+ look_right_up - looks for next step to the right up the edge of a
+                   character stroke.
+ findblob - finds a 4-connected blob of true pixels from within a
+            binary character image, returning the blob as a character
+            image.
+ findblob8 - finds an 8-connected blob of true pixels from within a
+            binary character image, returning the blob as a character
+            image.
+ findblobnruns - finds a 4-connected blob of true pixels from within a
+            binary character image, returning the blob as a character
+            image and the horizontal runs comprising the blob.
+ findblobnruns8 - finds an 8-connected blob of true pixels from within a
+            binary character image, returning the blob as a character
+            image and the horizontal runs comprising the blob.
+ findbinblob - finds a connected blob of true pixels from within a
+               binary character image, returning the blob as a binary
+               bitmap.
+ findblob_stats_rw - finds a blob of true pixels in a binary char image
+                     (search row maj) and returns the blob "stats"
+ findblob_stats_cl - finds a blob of true pixels in a binary char image
+                     (search col maj) and returns the blob "stats"
+ end_findblobs - deallocates memory upon completion of a findblob session.
+
+ f_fit_param3_image2 - returns a transformed binary image by applying
+                       precomputed Least Squares parameters and quickly
+                       pushing pixels and conditionally filling speckle
+                       noise in the resulting image (fastest).
+ grp4comp - CCITT Group 4 compresses an image.
+
+ grp4decomp - CCITT Group 4 decompresses an image.
+
+ compute_hist - computes a horizontal or vertical spatial histogram
+                from a binary bitmap.
+ compute_x_hist - computes a horizontal spatial histogram from a
+                  binary bitmap.
+ compute_y_hist - computes a vertical spatial histogram from a
+                  binary bitmap.
+ hist_nruns_hori - given a list of horizontal runs, computes a histogram
+                   by summing the top-n longest runs in each row.
+ hist_nruns_hori2 - given a list of horizontal runs, computes a histogram
+                 by summing the top-n longest runs in each row and returns
+                 the sorted order of the runs.
+ cut_image - returns the subimage from a binary bitmap that is
+             byte aligned in origin and width.
+ cut_exact_image - returns the exact subimage requested from a binary
+                   bitmap.
+ imagedup - takes an image of specified depth and duplicates its
+            contents in a new image.
+ PixPerByte - returns the pixel per byte factor given the depth of
+              a pixel in an image.
+ SizeFromDepth - computes the byte size of an image based on the
+                 image's pixel width, pixel height, and pixel depth.
+ allocate_image - allocates and zeroes (using calloc) an image of
+                  specified width, height, and depth.
+ mallocate_image - allocates an image of specified width, height, and
+                  depth using malloc().
+ find_first_max_forward - returns the location and value of the first
+                          maximum searching forward through a
+                          specified section of a list of integers.
+ find_first_min_forward - returns the location and value of the first
+                          minimum searching forward through a
+                          specified section of a list of integers.
+ find_first_min_backward - returns the location and value of the first
+                           minimum searching backward through a
+                           specified section of a list of integers.
+ erode_charimage - set true pixel to zero if any of 4 neighbors is zero
+                   in a character image.
+ dilate_charimage - set false pixel to one if any of 4 neighbors is one
+                    in a character image.
+ get_south8 - return value of char image pixel 1 below of current pixel
+              if defined else return (char)0
+ get_north8 - return value of char image pixel 1 above of current pixel
+              if defined else return (char)0
+ get_east8  - return value of char image pixel 1 right of current pixel
+              if defined else return (char)0
+ get_west8  - return value of char image pixel 1 left  of current pixel
+              if defined else return (char)0
+ max_overlap_run_along_x - analyzes a system of horizontal runs and
+                assigns a vector of y values accoriding to the maximum
+                length run at each x posistion.
+ init_markers - initializes markers to a specifiec x position to keep
+                track of processing within the system of horizontal runs.
+ image_pad - pads an image to a new byte-aligned width and height based
+             on new width and height dimensions.
+ find_pix_north - from a given point in an 8-bit pixel image, finds the
+                  the first pixel upward that has the specified value.
+ find_pix_south - from a given point in an 8-bit pixel image, finds the
+                  the first pixel downward that has the specified value.
+ find_pix_east - from a given point in an 8-bit pixel image, finds the
+                 the first pixel rightward that has the specified value.
+ find_pix_west - from a given point in an 8-bit pixel image, finds the
+                 the first pixel leftward that has the specified value.
+ find_pix_fwd_on_line - searches forward along a specified segment of a line
+                 trajectory for the first pixel that has the specified value.
+ find_pix_bwd_on_line - searches backward along a specified segment of a line
+                 trajectory for the first pixel that has the specified value.
+ n_pixels_on_line - counts the number of pixels with specified value along
+                 a given line trajectory.
+ sub_column_eq - checks if the designated portion of a column in an 8-bit
+                 pixel image equals the specified pixel value.
+ sub_row_eq - checks if the designated portion of a row in an 8-bit
+              pixel image equals the specified pixel value.
+ next_pix_in_region_ptr - resumes search for a pixel in a region of a binary
+                      char image specified by a top and bottom trajectory using
+                      pointers.
+ next_pix_in_region - resumes search for a pixel in a region of a binary char
+                      image specified by a top and bottom trajectory spanning the
+                      entire width of the image.
+ black_pixel_count - returns the total number of pixels in a binary
+                     image with value equal to one.
+ ReadBinaryRaster - reads the contents of a binary IHead image file
+                    into an IHead structure and image memory.
+ grayscale_rotate_90 - rotates a grayscale image exactly 90 degrees
+                       clockwise by copying pixel rows to pixel columns.
+ grayscale_rotate_n90 - rotates a grayscale image exactly -90 degrees
+                 counter-clockwise by copying pixel rows to pixel columns.
+ get_runs8 - extracts and returns a list of all the horizontal runs from
+             the binary charimage passed.
+ next_run - resumes search and extracts the next horizontal run in the
+            binary charimage passed.
+ add_run - adds the start point and the length of a run to the list
+           of runs.
+ realloc_runs - allocates (and reallocates if necessary) the list of
+                runs as the list becomes full.
+ segblobs8 - takes a char image and returns all the connected components in a list.
+
+ segblobs8rlen - takes a char image and returns all the connected components and the
+                 list of run lengths for the entire image.
+ squashx8_8 - takes a charimage and squashes it by a factor of 8 in both
+            dimensions without throwing away rows and columns (~4 X slower).
+ subimage_copy - copies an 8-bit subimage to another image at a
+                 specified location.
+ subimage_and - uses a logical AND operator to copy an 8-bit subimage
+                to another image at a specified location.
+ subimage_or - uses a logical OR operator to copy an 8-bit subimage
+               to another image at a specified location.
+ subimage_xor - uses a logical XOR operator to copy an 8-bit subimage
+                to another image at a specified location.
+ subimage_add - copies an 8-bit subimage to another image adding the
+                subimage pixels to the pixels at the specified location.
+ subimage_sub - copies an 8-bit subimage to another image subtracting
+                subimage pixels from pixels at the specified location.
+ subimage_lookup - addresses a lookup table with the pixels from an
+                   8-bit subimage and assignes the lookups to the
+                   destination image at the specified location.
+ subimage_addcon - adds a constant to the pixels in an 8-bit subimage.
+
+ subimage_subcon - subtracts a constant from the pixels in an 8-bit
+                   subimage.
+ subimage_multcon - multiplies a constant to the pixels in an 8-bit
+                    subimage.
+ subimage_divcon - divides the pixels in an 8-bit subimage by a
+                   constant.
+ subimage_fmultcon - multiplies a floating point constant to the pixels
+                     in an 8-bit subimage.
+ subimage_fdivcon - divides the pixels in an 8-bit subimage by a
+                    floating point constant.
+ subimage_set - sets all the pixels in an 8-bit subimage to a specified
+                value.
+ subimage_zeroes - sets all the pixels in an 8-bit subimage to zero.
+
+ subimage_ones - sets all the pixels in an 8-bit subimage to one.
+
+ subimage_invert - inverts all the pixels in an 8-bit subimage.
+
+ find_first_thresh_forward - finds the position and value of the first
+                             integer that exceeds a threshold searching
+                             forward in a specified section of a list.
+ find_first_thresh_backward - finds the position and value of the first
+                              integer that exceeds a threshold searching
+                              backward in a specified section of a list.
+ writeihdrfile - writes the contents of an IHead structure and an
+                 image memory to the specified file.
+ zoom8 - scales an unsigned char image based on the x & y factors
+         passed.
+ zoom - scales a binary bitmap up or down depending on the x & y factors
+        passed.
+ zoom_x - scales a binary bitmap up or down based on the x factor
+          passed.
+ zoom_y - scales a binary bitmap up or down based on the y factor
+          passed.
+ enlarge_x - expand a binary bitmap's columns by the x factor passed.
+
+ enlarge_y - expand a binary bitmap's rows by the y factor passed.
+
+ shrink_x - down sample a binary bitmap's columns by the x factor
+            passed.
+ shrink_y - down sample a binary bitmap's rows by the y factor passed.
+
+ copy_cols - copies a single column of pixels to a range of column
+             locations in a destination image.
+ copy_col - copies a column of pixels to a column location in a
+            destination image.
+ copy_rows - copies a single row of pixels to a range of row locations
+             in a destination image.
+ copy_row - copies a row of pixels to a row location in a destination
+            image.
+ zoomN - shrinks image by logical OR of square tiles, handles 1/8 bit
+         per pixel input -and- outputs, padding of outputs, prealloc
+         or internal alloc of output data.
+ zoomx4 - shrinks an unsigned char image down by logical OR of tiles
+          of size 4x4. wrapper call to zoomN
+ zoomx3 - shrinks an unsigned char image down by logical OR of tiles
+          of size 3x3. wrapper call to zoomN
+ zoomx2 - shrinks an unsigned char image down by logical OR of tiles
+          of size 2x2. wrapper call to zoomN
+ zoomx8 - shrinks an unsigned char image down by logical OR of tiles
+          of size 8x8. wrapper call to zoomN
+ zoomxN - shrinks an unsigned char image down by logical OR of tiles
+          of size NxN. wrapper call to zoomN
+ zoomaux{2,3,4,8,N} - auxialliary zooming routines called by zoomN.

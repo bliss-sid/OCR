@@ -1,0 +1,171 @@
+/*
+# proc: kdtreewrite - output a properly constructed tree to a named file
+# proc:
+# proc: kdtreeread - read the tree file, return the properly constructed tree
+# proc:
+# proc: kdtreeput - recursively write a tree and its subtrees to file
+# proc:
+# proc: kdinfoput - write a tree's node information to file
+# proc:
+# proc: kdleafput - write the pattern vectors stored in a tree's leaf
+# proc:
+# proc: kdtreeget - recursively read from file and attach subtrees to a tree
+# proc:
+# proc: kdinfoget - read a tree's node information from file
+# proc:
+*/
+
+#include <stdio.h>
+#include <kdtree.h>
+
+void kdtreewrite(tree, fn)
+TREE *tree; char *fn;
+{
+FILE *fp;
+   if ((fp = fopen(fn, "wb")) == NULL)
+      syserr("kdtreewrite", "fopen", fn);
+   kdtreeput(fp, tree);
+   fclose(fp);
+}
+
+
+void kdtreeput(fp, tree)
+FILE *fp; TREE *tree;
+{
+int isleaf = 0;	/* flag indicating not-a-leaf	*/
+int i;
+
+   if (istreechildless(tree))
+   {
+      kdleafput(fp, tree);
+      return;
+   }
+   kdinfoput(fp, tree, isleaf);
+   for ( i = 0 ; i < tree->nchild ; i++ )
+      kdtreeput(fp, tree->children[i]);
+}
+
+
+void kdinfoput(fp, tree, isleaf)
+FILE *fp; TREE *tree; int isleaf;
+{
+   if (1 != fwrite(&isleaf,              sizeof(int  ), 1, fp))
+      syserr("kdinfoput", "fwrite", "failed on npoints");
+
+   if (1 != fwrite(&tree->npoints,       sizeof(int  ), 1, fp))
+      syserr("kdinfoput", "fwrite", "failed on npoints");
+   if (1 != fwrite(&tree->datadimension, sizeof(int  ), 1, fp))
+      syserr("kdinfoput", "fwrite", "failed on dimension");
+   if (1 != fwrite(&tree->nchild,        sizeof(int  ), 1, fp))
+      syserr("kdinfoput", "fwrite", "failed on nchild");
+   if (1 != fwrite(&tree->splitindex,    sizeof(int  ), 1, fp))
+      syserr("kdinfoput", "fwrite", "failed on splitindex");
+   if (1 != fwrite(&tree->vmin,          sizeof(float), 1, fp))
+      syserr("kdinfoput", "fwrite", "failed on vmin");
+   if (1 != fwrite(&tree->vmax,          sizeof(float), 1, fp))
+      syserr("kdinfoput", "fwrite", "failed on vmax");
+}
+
+
+void kdleafput(fp, tree)
+FILE *fp; TREE *tree;
+{
+int isleaf = 1;	/* flag indicating this --is-- a leaf node */
+int i, n;
+
+   kdinfoput(fp, tree, isleaf);
+
+   n = tree->datadimension * tree->npoints;
+   if (n != fwrite(tree->pointsdata,  sizeof(float), n, fp))
+      syserr("kdleafput", "fwrite", "failed on pointsdata");
+
+   for ( i = 0 ; i < tree->npoints ; i++ )
+      if (1 != fwrite(&tree->points[i].class, sizeof(int  ), 1, fp))
+         syserr("kdleafput", "fwrite", "failed on point[i].class");
+}
+
+
+TREE *kdtreeread(fn)
+char *fn;
+{
+FILE *fp;
+TREE *tree;
+
+   if ((fp = fopen(fn, "rb")) == NULL)
+      syserr("kdtreeread", "fopen", fn);
+   tree = kdtreeget(fp);
+   fclose(fp);
+   return tree;
+}
+
+
+TREE *kdtreeget(fp)
+FILE *fp;
+{
+TREE *tree;
+int isleaf;
+
+   if ((tree = (TREE *)malloc(sizeof(TREE))) == NULL)
+      syserr("kdtreeread", "malloc", "space for TREE");
+   init_tree(tree, NULL, 0, 0);
+
+   isleaf = kdinfoget(fp, tree);
+
+   if (!isleaf)
+   {
+      int i;
+
+      if ((tree->children = (TREE **)malloc(tree->nchild * sizeof(TREE *))) == NULL)
+         syserr("kdtreeget", "malloc", "space for TREE pointers");
+
+      for ( i = 0 ; i < tree->nchild ; i++ )
+         tree->children[i] = kdtreeget(fp);
+   }
+   else
+   {
+      int i, n;
+      float *dst;
+
+      tree->allocpoints = tree->npoints;
+      n = tree->datadimension * tree->npoints;
+      if ((tree->points     = (POINT *)malloc(tree->npoints * sizeof(POINT))) == NULL)
+         syserr("kdtreeget", "malloc", "space for POINTs");
+      if ((tree->pointsdata = (float *)malloc(            n * sizeof(float))) == NULL)
+         syserr("kdtreeget", "malloc", "space for pointsdata");
+      if (n != fread(tree->pointsdata, sizeof(float), n, fp))
+         syserr("kdtreeget", "fread", "pointsdata");
+
+      n = tree->datadimension;
+      for ( i = 0, dst = tree->pointsdata ; i < tree->npoints ; i++, dst += n )
+      {
+         if (1 != fread(&tree->points[i].class, sizeof(int), 1, fp))
+            syserr("kdtreeget", "fread", "points[i].class");
+         tree->points[i].data = dst;
+      }
+   }
+   return tree;
+}
+
+
+int kdinfoget(fp, tree)
+FILE *fp; TREE *tree;
+{
+int leaf;
+
+   if (1 != fread(&leaf,		sizeof(int  ), 1, fp))
+      syserr("kdinfoget", "fread", "leaf field");
+   if (1 != fread(&tree->npoints,	sizeof(int  ), 1, fp))
+      syserr("kdinfoget", "fread", "npoints field");
+   if (1 != fread(&tree->datadimension, sizeof(int  ), 1, fp))
+      syserr("kdinfoget", "fread", "npoints field");
+   if (1 != fread(&tree->nchild,	sizeof(int  ), 1, fp))
+      syserr("kdinfoget", "fread", "nchild field");
+   if (1 != fread(&tree->splitindex,	sizeof(int  ), 1, fp))
+      syserr("kdinfoget", "fread", "splitindex field");
+   if (1 != fread(&tree->vmin,		sizeof(float), 1, fp))
+      syserr("kdinfoget", "fread", "vmin field");
+   if (1 != fread(&tree->vmax,		sizeof(float), 1, fp))
+      syserr("kdinfoget", "fread", "vmax field");
+
+   return leaf;
+}

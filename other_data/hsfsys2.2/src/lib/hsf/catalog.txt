@@ -1,0 +1,107 @@
+ do_digit_fields_Rel2 - processes the digit fields on a registered HSF
+                        form.
+ do_alpha_field_Rel2 - processes an alphabetic field (lowercase or
+                       uppercase) on a registered HSF form.
+ do_const_fields_Rel2 - processes the Constitution field on a registered
+                        HSF form.
+ process_digit_field_Rel2 - isolates, segments, normalizes, feature
+                       extracts, and classifies the specified digit field.
+ process_alpha_field_Rel2 - isolates, segments, normalizes, feature
+                 extracts, and classifies the specified alphabetic field.
+ process_const_field_Rel2 - isolates, segments, normalizes, feature
+                 extracts, classifies, and conditionally spell-corrects
+                 the specified Constitution field.
+ do_digit_fields - processes the digit fields on a registered HSF form.
+
+ do_alpha_field - processes an alphabetic field (lowercase or uppercase)
+                  on a registered HSF form.
+ do_const_field - processes the Constitution field on a registered HSF
+                  form.
+ init_field - reads in the feature extraction basis functions and
+              neural network prototypes assocated with a specific
+              type of entry field.
+ process_digit_field - isolates, segments, normalizes, shears, feature
+                       extracts, and classifies the specified digit
+                       field.
+ process_alpha_field - isolates, segments, normalizes, shears, feature
+                       extracts, and classifies the specified alpha
+                       field.
+ process_const_field2 - isolates, segments, normalizes, shears, feature
+                        extracts, and classifies the given const field
+                        and conditionally does dictionary processing.
+ free_field - deallocates basis functions and prototype information
+              related to a specific type of entry field.
+ load_form_image - loads a binary IHead image into memory as 1 pixel
+                   per byte.
+ register_form - registers an HSF form using a generalized method.
+
+ do_hsf_form - reads in an HSF form image, its spatial template,
+               registers the form image, and conducts form removal.
+ init_form - reads in an HSF form image and its spatial template.
+
+ process_form2 - registers an HSF form image (quickly) and conducts form
+                 removal.
+ free_form - deallocates images and IHead structures associated with
+             a full-page HSF form.
+ hsfpoints - locates six registration points within an image of
+             an hsf form.
+ read_hsftmplt - reads the contents of the specified file into an
+                 hsform structure.
+ init_hsf_fet - allocates a new fet structures and initializes it
+                with hsf field names.
+ iso_1line_field - isolates and crops a field containing one line of
+                   text given spatial template coordinates for the
+                   field.
+ iso_nline_field - isolates and crops a field containing more than one
+                   line of text given spatial template coordinates for
+                   the field.
+ iso_handprint_in_box - isolates the handprint written within the given
+                   box-field subimage and preserves character strokes that
+                   intersect the box.
+ lift_chars_fr_zone - returns a composit image and a list of connected
+                   components extracted from the specified subimage.
+ next_pix_in_subimage - locates the next black pixel in a subimage search.
+
+ norm_2nd_gen_blobls8 - conducts second generation spatial normalization on
+           the characters in the specified 1 pixel per byte mis structure.
+ norm_2nd_gen - conducts second generation spatial normalization on
+                the characters in the specified mis structure given
+                the primary space statistics on each character.
+ norm_2nd_gen2 - conducts second generation spatial normalization on
+                 the characters in the specified mis structure without
+                 the use of primary space statistics.
+ genregform8 - generalized form registration routine that accounts for
+               rotation and translation by locating dominant vertical
+               and horizontal line structures in the image.
+ train_genregform8 - locates registration structures for training
+               generalized form registration code.
+ register_hsf2 - locates the registration points in a binary image of
+                 an HSF form and transforms the image to match the
+                 given reference points quickly pushing pixels.
+ string_results - takes a class map, a list of class indices, and a
+                  list of confidences, and builds a hypothesis string
+                  and a confidence string.
+ remove_form - subtracts the form information from a registered binary
+               image, given an image of a blank form.
+               
+ init_run - allocates and initializes memory required to batch process
+            a group of HSF forms.
+ free_run - deallocates the memory required to batch process a group of
+            HSF forms.
+ segbinblob - segments the given binary bitmap into blobs, storing the
+              results in an mis memory and returning stats.
+ segbinblobdigits - segments the given binary bitmap containing a
+                    single line of handprinted digits, storing the
+                    results in an mis memory and returning stats.
+ paste_digit_blobs - pastes certain blobs back together in an attempt
+                     to put disjoint hats back on fives.
+ shear_mis8 - takes characters in a 1 pixel per byte mis structure and
+             horizontally shears them in order to straighten them up.
+ shear_char8 - takes a binary charimage of a character and horizontally
+              shears it in order to straighten the character up.
+ shear_mis - takes characters in the specified mis structure and
+             horizontally shears them in order to straighten them up.
+ shear_char - takes a binary bitmap of a character and horizontally
+              shears it in order to straighten the character up.
+ print_time_report - generates a timing report and printes it to the
+                     specified file.

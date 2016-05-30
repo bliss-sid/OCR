@@ -1,0 +1,142 @@
+# **********************************************************
+# Project:		NIST HSF Recognition System
+# SubTree:		./hsf/src/lib/nn
+# Filename:		makefile.mak
+# Integrator:		Michael D. Garris
+# Organization:		NIST/ITL
+# Host System:		SUN OS/4.1.3 & 4.1.2 & 4.1.1 (UNIX)
+# Date Created:		3/31/94
+#
+# **********************************************************
+# Makefile for SRC Library Directory
+# **********************************************************
+SHELL=/bin/sh
+# PROJDIR and INSTARCH Passed On Command Line ONLY
+PROJECT_ROOT	= $(PROJDIR)
+ARCHTYPE	= $(INSTARCH)
+LIBDIR		= $(PROJECT_ROOT)/lib
+SRCDIR		= $(PROJECT_ROOT)/src/lib/nn
+
+# **************************************************
+# INDIVIDUAL PROGRAM MODIFICATIONS SHOULD BEGIN HERE
+# **************************************************
+
+# Library to make (library name)
+LIBRARY	= libnn.a
+# Source files for LIBRARY
+SRC	= basis_io.c \
+	covar.c \
+	diag.c \
+	ep.c \
+	euclid.c \
+	kd_build.c \
+	kd_io.c \
+	kd_pnn.c \
+	kl.c \
+	kl_mis.c \
+	kl_mis8.c \
+	maxp.c \
+	med_io.c \
+	median.c \
+	pat_io.c \
+	r_sign.c \
+	rcall.c \
+	transp.c
+
+# Local additions for CFLAG options (eg: -g)
+LOCAL_CFLAGS	= -xO3
+
+# *******************************************************
+# THE REST OF THE MAKEFILE SHOULD NOT NEED TO BE MODIFIED
+#       (EXCEPT UPON APPROVAL OF PROJECT MANAGER)
+# *******************************************************
+
+INCLUDE = $(PROJECT_ROOT)/include
+OBJ     = $(SRC:.c=.o)
+LIBRY   = $(LIBRARY)
+
+CFLAGS	= -I$(INCLUDE) -L$(LIBDIR) -s $(LOCAL_CFLAGS)
+CC	= cc $(CFLAGS)
+
+ARFLAGS = ru
+AR	= ar $(ARFLAGS)
+
+MAKEFILE	= makefile.mak
+.PRECIOUS: $(MAKEFILE)
+
+.c.o:
+	$(CC) -c $<
+
+it: $(LIBRY)
+
+install: $(MAKEFILE) $(LIBDIR)/$(LIBRARY)
+$(LIBDIR)/$(LIBRARY): $(LIBRY)
+	cp $(LIBRY) $(LIBDIR)
+	chmod 664 $(LIBDIR)/$(LIBRARY)
+	catalog.sh proc $(SRCDIR) c > /dev/null
+
+$(LIBRY): $(OBJ)
+	$(AR) $(LIBRY) $?
+
+%.o: %.c
+	$(CC) -c -o $@ $<
+
+clean :
+	rm -f $(OBJ) *.BAK *~ #*# dependlist;
+
+bare: clean
+	rm -f $(LIBRY)
+
+$(MAKEFILE): $(SRC)
+	$(CC) -xM $(SRC) > dependlist
+	@sed -e '1,/^# DO NOT DELETE/!d' $(MAKEFILE) > $(MAKEFILE).tmp.$$$$; \
+	cat dependlist >> $(MAKEFILE).tmp.$$$$; \
+	cp $(MAKEFILE) $(MAKEFILE).BAK; \
+	mv $(MAKEFILE).tmp.$$$$ $(MAKEFILE); \
+	rm -f dependlist
+
+depend: $(SRC)
+	$(CC) -xM $(SRC) > dependlist
+	@sed -e '1,/^# DO NOT DELETE/!d' $(MAKEFILE) > $(MAKEFILE).tmp.$$$$; \
+	cat dependlist >> $(MAKEFILE).tmp.$$$$; \
+	cp $(MAKEFILE) $(MAKEFILE).BAK; \
+	mv $(MAKEFILE).tmp.$$$$ $(MAKEFILE); \
+	rm -f dependlist; \
+	echo make depend complete
+
+instarch : bare
+	@case "$(ARCHTYPE)" in \
+	lnx|cyg) rm -f basis_io.c; \
+	     cp basis_io.lit basis_io.c; \
+             chmod 444 basis_io.c; \
+	     rm -f pat_io.c; \
+	     cp pat_io.lit pat_io.c; \
+             chmod 444 pat_io.c; \
+	     rm -f kd_io.c; \
+	     cp kd_io.lit kd_io.c; \
+             chmod 444 kd_io.c; \
+	     rm -f makefile.mak; \
+	     cp makefile.$(ARCHTYPE) makefile.mak; \
+	     chmod 640 makefile.mak; \
+	     echo $(ARCHTYPE) files installed \
+	;; \
+	sol|sgi|aix) rm -f basis_io.c; \
+	     cp basis_io.big basis_io.c; \
+             chmod 444 basis_io.c; \
+	     rm -f pat_io.c; \
+	     cp pat_io.big pat_io.c; \
+             chmod 444 pat_io.c; \
+	     rm -f kd_io.c; \
+	     cp kd_io.big kd_io.c; \
+             chmod 444 kd_io.c; \
+	     rm -f makefile.mak; \
+	     cp makefile.$(ARCHTYPE) makefile.mak; \
+	     chmod 640 makefile.mak; \
+	     echo $(ARCHTYPE) files installed \
+	;; \
+	*) echo 'Tried to install uknown machine architecture: '$(ARCHTYPE); \
+	   exit 1 \
+	;; \
+	esac
+
+# DO NOT DELETE THIS LINE - make depend uses it

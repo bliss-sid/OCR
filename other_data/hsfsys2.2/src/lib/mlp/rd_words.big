@@ -1,0 +1,80 @@
+/* [Possibly add checking of the fread return values.] */
+
+/*
+# proc: rd_words - Reads a sequence of 4-byte words into a buffer, either from a
+# proc:            Fortran-style binary file or from a text file.
+Can use any specified
+spacing between the positions in the buffer into which the words are
+to be read.  (The words are assumed to form a contiguous block in the
+file, i.e. there is no skipping of data in the file.)
+
+Input args:
+  ascii_or_binary: If ASCII, the file to be read is assumed
+    to be in ascii form; if BINARY, the file is assumed to be in the
+    form of a Fortran-style binary file into which the sequence of
+    words that will now be read, were written in by a single Fortran
+    binary write statement: i.e., the data block is preceded and
+    followed by an int whose value is the number of bytes in the
+    block.  (ASCII and BINARY are defined in parms.h.)
+  fp: A FILE pointer already fopened for reading.
+  nwords: How many words are to be read.
+  bufinc: The words are to be read into positions 0, bufinc,
+    2 * bufinc, etc. of buf.
+  datatype: The type of data expected: INT or FLOAT (defined
+    in rd_words.h).  This input does not matter if fortranbin is
+    true.
+
+Output arg:
+  buf: Buffer into which the words are to be read.  Must be allocated
+    by caller.
+*/
+
+#include <stdio.h>
+#include <mlp/rd_words.h>
+#include <mlp/parms.h>
+
+void
+rd_words(ascii_or_binary, fp, nwords, bufinc, datatype, buf)
+char ascii_or_binary, datatype;
+int nwords, bufinc, *buf;
+FILE *fp;
+{
+  char str[100];
+  int nbytes_expected, nbytes, *buf_e;
+
+  if(sizeof(int) != 4 || sizeof(float) != 4)
+    fatalerr("rd_words", "sizeof(int) and sizeof(float) must be 4",
+      NULL);
+  buf_e = buf + nwords * bufinc;
+  if(ascii_or_binary == ASCII) {
+    if(datatype == INT)
+      for(; buf < buf_e; buf += bufinc)
+	fscanf(fp, "%d", buf);
+    else if(datatype == FLOAT)
+      for(; buf < buf_e; buf += bufinc)
+	fscanf(fp, "%f", buf);
+    else {
+      sprintf(str, "datatype must be INT, (char)%d, or FLOAT, \
+(char)%d; it is (char)%d", (int)INT, (int)FLOAT, (int)datatype);
+      fatalerr("rd_words", str, NULL);
+    }
+  }
+  else { /* ascii_or_binary == BINARY, meaning a fortran-style
+         binary file */
+    nbytes_expected = nwords * 4;
+    fread(&nbytes, 4, 1, fp);
+    if(nbytes != nbytes_expected) {
+      sprintf(str, "nbytes is %d, but nbytes_expected is %d", nbytes,
+        nbytes_expected);
+      fatalerr("rd_words", str, NULL);
+    }
+    for(; buf < buf_e; buf += bufinc)
+      fread(buf, 4, 1, fp);
+    fread(&nbytes, 4, 1, fp);
+    if(nbytes != nbytes_expected) {
+      sprintf(str, "nbytes is %d, but nbytes_expected is %d", nbytes,
+        nbytes_expected);
+      fatalerr("rd_words", str, NULL);
+    }
+  }
+}

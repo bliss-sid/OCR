@@ -1,0 +1,97 @@
+.\" @(#)mis2pat1.1 96/12/12 NIST
+.\" I Visual Image Processing Group
+.\" Michael D. Garris
+.\"
+.TH MIS2PAT1 1 "12 December 1996"
+.SH NAME
+mis2pat1 \- generating patterns for the PNN classifier in \fIhsfsys1\fP
+.SH SYNOPSIS
+.LP
+.nf
+.B "mis2pat1 [\-h][\-n][\-v] \fI<classset> <evtfile> <outroot> <mfs_of_clsfiles> <mfs_of_misfiles>\fP"
+.fi
+.SH DESCRIPTION
+This command takes a set of training images along with the eigenvectors generated
+by \fImis2evt\fP and creates feature vectors that can be used as prototypes for
+training the PNN classifier used in \fIhsfsys1\fP. Typically, the same images used 
+to compute the eigenvectors are used here to generate prototype vectors. The
+program \fImis2pat1\fP also builds a kd-tree for preclassification. The prototypes
+along with their class assignments and kd-tree are stored in one patterns file,
+while median vectors computed from the prototype vectors are stored in a separate
+median vector file. The program's main routine is located in \fIsrc/bin/mis2pat1\fP.
+.LP
+.SH ARGUMENTS
+.TP
+.I classset
+Specifies the name of a text file (MFS file) containing the labels assigned to each 
+class. For example, a digit classifier uses ten classes labeled 0 through 9. 
+The format of an MFS file is documented by the routine \fIwritemfsfile()\fP
+found in \fIsrc/lib/mfs/writemfs.c\fP.
+.TP
+.I evtfile
+Specifies the basis function file containing eigenvectors computed by \fImis2evt\fP. 
+The number of features in each output vector is determined by the number of
+eigenvectors in this file. The format of this file is documented by the routine
+\fIwrite_basis()\fP found in \fIsrc/lib/nn/basis_io.c\fP.
+.TP
+.I outroot
+Specifies the root file name of the output pattern and median vector files. The 
+name of the output pattern file has extension \fIpat\fP while the median vector
+file has extension \fImed\fP. The format of the patterns / kd_tree file is
+documented by the routine \fIkdtreewrite()\fP in \fIsrc/lib/nn/kd_io.c\fP
+whereas the median vector file format is documented by the routine
+\fIwritemedianfile()\fP in \fIsrc/lib/nn/med_io.c\fP.
+.TP
+.I mfs_of_clsfiles
+.TP
+.I mfs_of_misfiles
+The final two arguments are the names of text files (MFS files) that contain
+listings of file names. The argument \fImfs_of_clsfiles\fP lists file names
+containing class assignments corresponding to the images in the MIS files 
+listed in the argument \fImfs_of_misfiles\fP. Each class assignment file must
+have the same number of class assignments as there are images in its corresponding
+MIS file, and the classes assigned must be consistent with those listed in the
+argument \fIclassset\fP.
+.LP
+.SH OPTIONS
+.TP
+.B h
+Specifies that the class labels listed in the \fIclassset\fP file are to be converted
+to ASCII characters values represented in hexadecimal. All the class assignments
+in the files listed in the argument \fImfs_of_clsfiles\fP use the convention
+where [30-39] represent digits, [41-5a] represent uppercase, and [61-7a] 
+represent lowercase. If the \fIclassset\fP file contains alphabetic representations
+such as [0-9], [A-Z], and [a-z], then this flag must be used to effect conversion
+of these labels to their hexadecimal equivalents.
+.TP
+.B n
+Specifies the storing of intermediate normalized character images. \fIMis2pat1\fP
+can process binary images that are either (128X128) or (32X32). In the case of the
+former, the program invokes size and slant normalization utilities to produce
+32X32 images. If the input images are already 32X32, this flag has no effect.
+If normalization does occur, the resulting normalized images are stored to MIS
+files having the same name as those listed in \fImfs_of_misfiles\fP, with the
+extension \fI32\fP appended.
+.TP
+.B v
+Produces messages to standard output signifying the completion of each MIS file.
+.LP
+.SH COMMENTS
+.LP
+This program was used to generate the patterns files provided with this distribution
+in the directory \fIweights/pnn\fP and ending with the extension \fIpat\fP and
+median vector files ending with extension \fImed\fP. The patterns files contain 
+KL feature vectors, their associated classes, and a kd-tree. The feature vectors
+were computed using the eigenvectors found in the same directory and from the
+images provided in the top-level directory \fItrain\fP. The MFS files used as
+arguments to \fImis2pat1\fP are also provided in the \fIweights/pnn\fP subdirectories,
+as are the \fIclassset\fP files which end with the extension \fIset\fP. The
+class assignment files are listed in files ending with the extension \fIcl\fP, 
+whereas the MIS files are listed in files ending with the extension \fIml\fP.
+.LP
+.SH EXAMPLE
+.LP
+The patterns file \fIweights/pnn/lower/h46_l.pat\fP and median vector file
+\fIweights/pnn/lower/h46_l.med\fP were generated with the following command:
+.TP
+.B "% mis2pat1 -vh l.set h46_l.evt h46_l h46_l.cl h46_l.ml"

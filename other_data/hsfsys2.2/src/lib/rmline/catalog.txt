@@ -1,0 +1,167 @@
+ rm_bl_corner_1_sided - removes the bot-left corner of line data
+                using a slope projection from one side.
+ rm_bl_corner_2_sided - removes the bot-left corner of line data
+                by projecting a cut line between two points.
+ bl_corner_cut_slope - determines the slope for cutting off the
+                bot-left corner of line data.
+ sum_dys_bl_corner - computes changes in y used to estimate the
+                slope along which the bot-left corner will be cut.
+ is_boot - determines if the character piece touches along the bottom of
+           the line.
+ process_boot - removes the line data from the "boot" charater stroke.
+
+ boot_left_right_steps - determines the ratio of left to right steps
+                based on projected cut slopes on both sides of the boot.
+
+ rm_br_corner_1_sided - removes the bot-right corner of line data
+                using a slope projection from one side.
+ rm_br_corner_2_sided - removes the bot-right corner of line data
+                by projecting a cut line between two points.
+ br_corner_cut_slope - determines the slope for cutting off the
+                bot-right corner of line data.
+ sum_dys_br_corner - computes changes in y used to estimate the
+                slope along which the bot-right corner will be cut.
+ process_char_pieces_ml - shapes and smooths stems and descenders of character
+              strokes that intersect the lines using a locally dynamic vector
+              of median line widths.
+ identify_char_piece - categorizes the character piece by examining
+              its left and right edges.
+ extract_shape_features - computes 4 features used to represent the
+              character piece.
+ process_char_piece - main switch for shaping and smoothing a character
+              piece based on its identified type.
+ hough_lines_hori - computes the hough transform(s) for detecting lines
+                    with angles in the range [-range .. +range].
+ hough_lines - computes the hough transform for detecting lines within the
+               specified range of "normal" angles.
+ gen_slope_point - computes a line's slope and normal vector intersection
+                   point given a location within a hough transform matrix.
+ der2_change_right_up - locates an elbow that bends upward left to right
+             by analyzing 2nd derivative information from a list of integers.
+ der2_change_right_down - locates an elbow that bends downward left to right
+             by analyzing 2nd derivative information from a list of integers.
+ der2_change_left_up - locates an elbow that bends upward right to left
+             by analyzing 2nd derivative information from a list of integers.
+ der2_change_left_down - locates an elbow that bends downward right to left
+             by analyzing 2nd derivative information from a list of integers.
+ is_hat - determines if the character piece that rests on top of the line.
+
+ process_hat - removes the line data from the "hat" charater stroke.
+
+ hat_left_right_steps - determines the ratio of left to right steps
+                based on projected cut slopes on both sides of the hat.
+
+ fill_line_breaks - takes a sparse set of line points and extends the last point
+                    to the left of each void through the break.
+ interpolate_line_breaks - takes a sparse set of line points and interpolates
+                    across the breaks.
+ is_ncross - determines if the character piece passes through the line
+           top-to-bottom and right-to-left.
+ process_ncross - removes the line data from the "ncross" charater stroke.
+
+ is_pcross - determines if the character piece passes through the line
+           top-to-bottom and left-to-right.
+ process_pcross - removes the line data from the "pcross" charater stroke.
+
+ dominant_hori_line - chooses the most "dominant" solid or dashed
+          horizontal line from the hough transform matrices passed.
+ pick_max_pix_line - selects the most "dominant" solid horizontal line
+          from the hough transform matrices passed.
+ pick_dash_line - selects the most "dominant" dashed horizontal line
+          from the the hough transform matrices passed.
+ rm_long_hori_line - intelligently removes a long horizontal line from a
+                     binary char image while preserving data that
+                     intersects the line.
+ rm_box_long_hori_sides - removes the relatively long top and bottom
+                     sides of a box from within a binary char field image.
+ rm_box_long_vert_sides - carefully removes the  left and right vertical
+                     sides of a box from within a binary char field image.
+ rm_box_short_vert_sides - removes the relatively short left and right vertical
+                     sides of a box from within a binary char field image.
+ next_n_run - determines the start and ending poinnts of the next contiguous
+              run of elements in a list all equal to the specified value.
+ stddev_run_widths - computes the stddev on the legnth of black and white runs
+              along a given line trajectory through an 8-bit binary pixel image.
+ slice_widths_hori_nb - traverses a predefined set of horizontal line points and
+              locates the top and bottom of the intersecting vertical run of
+              black pixels (slice).
+ slice_width_hori - locates the top and bottom of a vertical run of contiguously
+                    black pixels that overlap (or are very close) to the specified
+                    starting point.
+ erase_slices_hori_ml - erases vertical slices along a predefined set of horizontal
+              line points based on a vector of locally dynamic median line widths.
+ erase_slice_hori - erases the pixels along a specified vertical slice.
+
+ draw_slice_hori - writes a given 8-bit pixel value along a specified vertical slice.
+
+ erase_fuzzy_slices_hori_ml - erases vertical slices along a predefined set of
+              of horizontal line points based on "fuzzy" line conditions.
+ process_t_corner_slice - erases a portion of a slice for either a top-left
+                          or top-right corner of line data based on a specifed
+                          cut slope.
+ process_b_corner_slice - erases a portion of a slice for either a bottom-left
+                          or bottom-right corner of line data based on a specifed
+                          cut slope.
+ is_thru_dl - determines if the character piece passes through the line
+           on its left side and touches the top of the line on its right side.
+ process_thru_dl - removes the line data from the "thru_dl" charater stroke.
+
+ is_thru_dr - determines if the character piece passes through the line
+           on its right side and touches the top of the line on its left side.
+ process_thru_dr - removes the line data from the "thru_dr" charater stroke.
+
+ is_thru_ul - determines if the character piece passes through the line
+           on its left side and touches the bottom of the line on its right side.
+ process_thru_ul - removes the line data from the "thru_ul" charater stroke.
+
+ is_thru_ur - determines if the character piece passes through the line
+           on its right side and touches the bottom of the line on its left side.
+ process_thru_ur - removes the line data from the "thru_ur" charater stroke.
+
+ rm_tl_corner_1_sided - removes the top-left corner of line data
+                using a slope projection from one side.
+ rm_tl_corner_2_sided - removes the top-left corner of line data
+                by projecting a cut line between two points.
+ tl_corner_cut_slope - determines the slope for cutting off the
+                top-left corner of line data.
+ sum_dys_tl_corner - computes changes in y used to estimate the
+                slope along which the top-left corner will be cut.
+ rm_tr_corner_1_sided - removes the top-right corner of line data
+                using a slope projection from one side.
+ rm_tr_corner_2_sided - removes the top-right corner of line data
+                by projecting a cut line between two points.
+ tr_corner_cut_slope - determines the slope for cutting off the
+                top-right corner of line data.
+ sum_dys_tr_corner - computes changes in y used to estimate the
+                slope along which the top-right corner will be cut.
+ slope_left_above - determines the slope of the left side of a character
+                    piece touching above the line.
+ slope_left_below - determines the slope of the left side of a character
+                    piece touching below the line.
+ slope_right_above - determines the slope of the right side of a character
+                     piece touching above the line.
+ slope_right_below - determines the slope of the right side of a character
+                     piece touching below the line.
+ unerase_short_voids_ml - refills short voids between character pices based on one
+               of the pieces abutting to the void with a slice width "close" to
+               the locally dynamic median line width.
+ unerase_curved_voids_ml - refills voids based on the intersection of slope
+                trajectories using a vector of locally dynamic median line widths.
+ join_nbrs_on_top - refills voids based on the intersection of slope trajectories
+                    measured from 2 nbring character pieces sitting on top the line.
+ join_nbrs_below - refills voids based on the intersection of slope trajectories
+                   measured from 2 nbring character pieces touching along the bottom
+                   of the line.
+ right_vert_clear - checks if right edge is vertically clear of character data above
+                    and below.
+ left_vert_clear - checks if left edge is vertically clear of character data above
+                   and below.
+ top_left_hori_clear - checks if top-left edge is horizontally clear of character data.
+
+ top_right_hori_clear - checks if top-right edge is horizontally clear of
+                        character data.
+
+ bottom_left_hori_clear - checks if bot-left edge is horizontally clear of
+                          character data.
+ bottom_right_hori_clear - checks if bot-right edge is horizontally clear of
+                          character data.

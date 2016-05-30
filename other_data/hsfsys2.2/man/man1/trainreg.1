@@ -1,0 +1,52 @@
+.\" @(#)trainreg.1 96/12/12 NIST
+.\" I Visual Image Processing Group
+.\" Michael D. Garris
+.\"
+.TH TRAINREG 1 "12 December 1996"
+.SH NAME
+trainreg \- training to register a new form
+.SH SYNOPSIS
+.nf
+.B "trainreg \fI<form_image> <out_points>\fP"
+.fi
+.SH DESCRIPTION
+This command deskews a form image and then locates the left and right, top and bottom,
+most dominant lines on the form and records their coordinates for future registration.
+\fItrainreg\fP automatically detects the dominant lines and stores the resulting
+x-coordinates of the left and right-most lines on the form and the y-coordinates
+of the top and bottom-most lines on the form. The program's main routine is located
+in the distribution directory \fIsrc/bin/trainreg\fP, and its main supporting
+subroutine is found in \fIsrc/lib/hsf/regform.c\fP.
+.LP
+.SH ARGUMENTS
+.TP
+.I form_image
+Specifies the name of the input file containing the image of the new form. 
+This image must be in the binary (black and white) IHead file format which
+is documented by the routine \fIReadBinaryRaster()\fP found in
+\fIsrc/lib/image/readrast.c\fP.
+.TP
+.I out_points
+Specifies the name of the output file to hold the coordinate positions of the 
+detected dominant lines in the image. This is an MFS file, the format of which
+is documented by the routine \fIwritemfsfile()\fP found in
+\fIsrc/lib/mfs/writemfs.c\fP.
+.LP
+.SH EXAMPLE
+.LP
+This program was used to generate the file \fItmplt/hsfgreg.pts\fP, which is
+used by \fIhsfsys2\fP to register input HSF forms. The file was created with the
+following command:
+.TP
+.B "% trainreg hsftmplt.pct hsfgreg.pts"
+.LP
+.SH COMMENT
+.LP
+To set the new NIST recognition system up to process a different type of form,
+\fItrainreg\fP must be run on a prototypical form and the output file must
+be stored. In addition, the fields or zones on a registered version of the new
+form must be measured manually with an interactive image display tool (not
+provided with this distribution), and the coordinates of each zone must be stored
+in an MFS file. The file \fItmplt/hsftmplt.pts\fP contains the zone coordinates of
+a registered HSF form. The source code must be modified to load these two new files
+(the coordinate file for registration and the zone coordinate file).

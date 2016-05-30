@@ -1,0 +1,98 @@
+ read_basis - get basis vectors, typically eigenvectors, from file
+              whose format is also used for covariance matrices.
+ write_basis - write basis vectors to a file.
+
+ make_covar - calculates the mean vector and covariance matrix
+              of floating feature vector sets.
+ make_mis_covar - calculates the mean vector and covariance matrix
+                  of binary mis image sets.
+ make_misnorm_covar - calculates the mean vector and covariance matrix
+                  of the normalized and sheared binary mis image sets.
+ diag - finds some eigen{values,vectors} of a real symmetric
+        matrix (calls a sequence of EISPACK routines)
+ la_eigen - Given a real positive definite symmetric matrix
+            produce the eigenvalues and eigenvectors.
+ diag_mat - Finds eigenvalues and eigenvectors of a symmetric real
+            matrix.  (A wrapper for SSYEVX, a Fortran routine in
+            LAPACK.)  This doesn't allow all the possibilities of
+            SSYEVX, but hides some of the messiness associated with
+            using SSYEVX directly.)
+ squared_euclid_dist - calculate the euclidean distances of many
+                       unknown feature vectors to many known ones
+ one_squared_euclid_dist - calculate the euclidean distances of one
+                       unknown feature vectors to many known ones
+ build_tree - create a tree and insert a specified number of floating
+              point vectors of specified class and dimensionality
+              into a tree, and return it.
+ tree_split - recursivly distribute the points in a tree into subtrees
+              and attach them as children to the tree
+ tree_findsplitvalues - indentify a component to control the division
+              of a tree, and call an assignment subroutine
+ tree_entiles - assign suitable ranges for the coefficient on
+              which the tree's points are subdivided
+ tree_onevariance - compute the variance of a specified component of a
+              tree's point vectors.
+ addtotree - add one point to a tree
+
+ init_tree - initialize the elements of a tree
+
+ tree_countleaves - count the leaves contained by a tree
+
+ tree_whichinterval - count the leaves contained by a tree
+
+ tree_order - reorder floating vectors pointed to by a tree into
+		     a contiguous memory block, to avoid cache misses.
+ tree_free - release memory allocated and hel by a tree
+
+ istreechildless - macro (used to be a function) that indicates whether
+          tree is a node (which has children) or a leaf (which does not).
+          a tree has children or points but not both.
+ kdtreewrite - output a properly constructed tree to a named file
+
+ kdtreeread - read the tree file, return the properly constructed tree
+
+ kdtreeput - recursively write a tree and its subtrees to file
+
+ kdinfoput - write a tree's node information to file
+
+ kdleafput - write the pattern vectors stored in a tree's leaf
+
+ kdtreeget - recursively read from file and attach subtrees to a tree
+
+ kdinfoget - read a tree's node information from file
+
+ pnnsearch - given init "close" vectors "centers" locate the nearest
+             neighbors in a tree and classify points using a truncated
+             pnn metric.
+ leaf_search - look at the points held in a leaf, and determine whether
+             they are close enough to be used for classification.
+ tree_search - determine whether all points contained in a subtree are
+             already inelligible to be used by the classifier, and if
+             not recursively seacrh the children, best search first, for
+             suitable neighbors
+ kl_premult - does necessary premultiplication ahead of the KL_transform
+              call. Gives efficiency.
+ kl_transform - calculate the KL transform of 32x32 binary images
+
+ kl_transform_mis8 - takes an mis structure of spatially normalized
+                    (32 X 32) characters formatted 1 pixel per byte
+                    and computes a kl-feature vector for each one.
+ kl_transform_mis - takes an mis structure of spatially normalized
+                    (32 X 32) characters and computes a kl-feature
+                    for each one.
+ nn_maxpf - locates the maximum value in a list of floats
+
+ featsclassmedian - make the by-class median vectors of
+                    a feature set.
+ readmedianfile - read the vectors that are the median of
+                  of features for each class
+ writemedianfile - write a median file as above. The file generally
+                   stores L text vectors each of N elements.
+ write_bin_patterns - write features vectors and their classes (no tree)
+                     to a file for fast binary io.
+ rcall_- wrapper for call to ratqr_().
+
+ r_sign - fundamental routine required by f2c distribution.
+
+ transpose_rect_matrix_s - transpose a rectangular matrix, float slower
+

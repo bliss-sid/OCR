@@ -1,0 +1,80 @@
+ blob_split_n_test - splits an image along a specified vertical path and then
+              tests to see if any of the resulting pieces is empty or too small
+              in which case cut points are adjusted and a new path is found.
+ find_cut_path - given a starting x position, finds a vertical cut path through
+              the image by following the gradient of character stroke edges.
+ split_blob_along_path - given a vertical path, actually divides the image into
+              two separate pieces.
+ join_2_vert_paths - joins to vertical paths at their closest points and ensures
+              that there is one and only one point in the resulting path for each
+              y-value in the image.
+ cut_caused_fragments - determines if cut created spurious fragments of characters
+              by counting the number of non-dot blobs in the resulting pieces.
+ blob_cut_x_as_pair - use multiple character detector to select an optimal
+                      vertical cut point in an image of two touching characters.
+ blob_cut_x_fr_left - use multiple character detector to select an optimal
+                      vertical cut point working from left-to-right in an image
+                      containing multiple touching characters.
+ is_dot_blob - determines if blob is small enough to be a dot based on the
+               estimated stroke width.
+ process_dot_blobs - reconnects dots to i's and j's and other larger blobs that are
+               sufficiently close.
+ left_closer_to_dot - given two nbring blobs, determines which is closer.
+
+ reconnect_dot - determines if nbring blob is below, close, and in line with the
+                 dot blob.
+ dist_dot2blob - computes the perpendicular distance from the blob to the linear
+                 projection from a nbring blob.
+ count_nondots_blob - counts the number of non-dots (blobs larger than a dot) in a
+                 specified blob image.
+ find_merge_blobs - determines if a blob should be merged with another nbring
+                    blob based on horizontal overlap.
+ detect_multi_char_blob - determines if the blob passed contains multiple
+              characters based on a simple 2D-linear discrimination function.
+ detect_multi_alpha_blob - determines if the blob passed contains multiple
+    alphabetic characters based on a simple 2D-linear discrimination function.
+ is_noise_blob - determines if blob is small enough to be noise based on the
+                 estimated stoke width.
+ process_noise_blobs - small blobs are merges back with larger blobs that are
+                 sufficiently close.
+ paste_top_strokes_blobls - loops through a blob list and puts top
+                    horizontal strokes back on characters such as 5s.
+ paste_alpha_tops - merges the tops of alphabetic characters with their
+                    corresponing bodies.
+
+ segment_chars8 - takes a binary charimage of a field and segments it into
+                  characters by carefully compositing and spliting blobs.
+ blob2chars8 - takes a list of blobs and the run lengths from a field and
+               constructs single character images.
+ compose_chars8 - takes a list of blobs and attempts to reconstruct characters that
+               are fragmented, place dots back on i's and j's, and identify other
+                  small blobs as noise.
+ split_chars8 - takes a list of blobs and attempts to detect and split multiple
+                touching characters.
+ blobs2alphas8 - processes a list of blobs into a list of alphabetic
+                 characters.
+ compose_alphas8 - merge blobs of characters pieces into composite single
+                   characters.
+ split_alphas8 - takes a list of blobs and attempts to detect and split multiple
+                touching alphabetic characters.
+ segment_paragraph_blobls - processes a list of blobs extracted from a
+             binary char image of a free-format handprinted paragraph
+             into a list of character images.
+ one_like_blob - determines if the given blob is shaped similar
+                 to the handprinted character 1.
+ one_like_blob - determines if the given blob is shaped similar
+                 to a handprinted horizontal dash.
+ is_smallpunct_blob - determines if the given blob is similar in
+                 size and shape to a small punctuation mark.
+ is_top_of_5 - determines if the given blob is shaped and positioned
+               similar to the top stroke of a handprinted 5.
+ is_top_of_alpha - tests if blob is shaped like a top stroke of alphabetic
+                   character.
+ split_touching_chars - separates multiple touching characters into individual
+                        characters.
+ split_touching_alphas - separates multiple touching characters into individual
+                        alphabetic characters.
+ segment_blob_as_pair - attempts to split touching character image based on
+                        assumption that only two charcters are in the image.
+ segment_blob_fr_left - attempts to split off a character from within the image
+                        of touching charcters by working from left-to-right.
