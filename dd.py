@@ -6,6 +6,7 @@ image = cv2.imread('C:\\Users\\siddharth\\Desktop\\dd.bmp', cv2.IMREAD_GRAYSCALE
 thresh = cv2.adaptiveThreshold(image,255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C ,cv2.THRESH_BINARY_INV,21,11)
 #cv2.imshow('output',thresh) 
 h,w=thresh.shape
+
 #print h,w
 #sum of intensities of pixels in rows stored in a list
 sumrow=[0]*h
